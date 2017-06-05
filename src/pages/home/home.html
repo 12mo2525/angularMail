@@ -7,25 +7,26 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item><label>氏名</label><input type="text" [(ngModel)]="myname"></ion-item>
+  <ion-item><label>相手の会社名</label><input type="text" placeholder="相手の会社名" [(ngModel)]="partnercompany"></ion-item>
+  <ion-item><label>相手の役職</label><input type="text" [(ngModel)]="partnerposition"></ion-item>
   <ion-item><label>お客様（名字）</label><input type="text" [(ngModel)]="yourname"></ion-item>
-  <ion-item><label></label><input type="text" [(ngModel)]="yourname"></ion-item>
-  <ion-item><label>お客様</label><input type="text" [(ngModel)]="yourname"></ion-item>
-  <ion-item><label>お客様</label><input type="text" [(ngModel)]="yourname"></ion-item>
-  <ion-item><label>お客様</label><input type="text" [(ngModel)]="yourname"></ion-item>
-  <ion-item><label>お客様</label><input type="text" [(ngModel)]="yourname"></ion-item>
-  <ion-item><label>お客様</label><input type="text" [(ngModel)]="yourname"></ion-item>
-  <div>
-  株式会社〇〇& 〇〇事業本部
+  <ion-item><label>自分の役職</label><input type="text" [(ngModel)]="myposition"></ion-item>
+  <ion-item><label>氏名</label><input type="text" [(ngModel)]="myname"></ion-item>
+  <ion-item><label>仕事</label><input type="text" [(ngModel)]="business"></ion-item>
+  <ion-item><label>出会いの場</label><input type="text" [(ngModel)]="comeacross"></ion-item>
+  <ion-item><label>次に会う場所</label><input type="text" [(ngModel)]="nextplace"></ion-item>
+  <ion-item><label>次の仕事</label><input type="text" [(ngModel)]="nextbusiness"></ion-item>
+  <div class="template">
+  株式会社{{partnercompany}} {{partnerposition}}
 
-<p>{{yourname}}</p>　様
+<p>{{yourname}}　様</p>
 
-株式会社Vries　(役職)〇〇の李維寧です。
-昨日は貴重な〇〇のお話、ありがとうございました。
-{{yourname}}さまと〇〇にてご縁をいただきまして、大変光栄です。
+株式会社Vries {{myposition}}の{{myname}}です。
+昨日は貴重な{{business}}のお話、ありがとうございました。
+{{yourname}}さまと{{comeacross}}にてご縁をいただきまして、大変光栄です。
 
-是非〇〇などで、またお話をお聞かせ頂きたいと存じます。
-その時は〇〇のお話などできたら幸甚です。
+是非{{nextplace}}などで、またお話をお聞かせ頂きたいと存じます。
+その時は{{nextbusiness}}のお話などできたら幸甚です。
 
 まだ、学部生という身分で、至らない点も多々あるかと存じますが、
 今後ともどうぞよろしくお願い致します。
