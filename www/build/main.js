@@ -55743,7 +55743,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/tatsuki/Documents/GitHub/angularMail/angularMail/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  The world is your oyster.\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.\n  </p>\n</ion-content>\n'/*ion-inline-end:"/Users/tatsuki/Documents/GitHub/angularMail/angularMail/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Ionic Blank\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-item><label>氏名</label><input type="text" [(ngModel)]="myname"></ion-item>\n  <ion-item><label>お客様（名字）</label><input type="text" [(ngModel)]="yourname"></ion-item>\n  <ion-item><label></label><input type="text" [(ngModel)]="yourname"></ion-item>\n  <ion-item><label>お客様</label><input type="text" [(ngModel)]="yourname"></ion-item>\n  <ion-item><label>お客様</label><input type="text" [(ngModel)]="yourname"></ion-item>\n  <ion-item><label>お客様</label><input type="text" [(ngModel)]="yourname"></ion-item>\n  <ion-item><label>お客様</label><input type="text" [(ngModel)]="yourname"></ion-item>\n  <ion-item><label>お客様</label><input type="text" [(ngModel)]="yourname"></ion-item>\n  <div>\n  株式会社〇〇& 〇〇事業本部\n\n<p>{{yourname}}</p>　様\n\n株式会社Vries　(役職)〇〇の李維寧です。\n昨日は貴重な〇〇のお話、ありがとうございました。\n{{yourname}}さまと〇〇にてご縁をいただきまして、大変光栄です。\n\n是非〇〇などで、またお話をお聞かせ頂きたいと存じます。\nその時は〇〇のお話などできたら幸甚です。\n\nまだ、学部生という身分で、至らない点も多々あるかと存じますが、\n今後ともどうぞよろしくお願い致します。\n\n<p>{{myname}}</p>\n\n</div>\n  The world is your oyster.\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.\n  </p>\n</ion-content>\n'/*ion-inline-end:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
 ], HomePage);
@@ -74563,7 +74563,7 @@ var MyApp = (function () {
     return MyApp;
 }());
 MyApp = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/tatsuki/Documents/GitHub/angularMail/angularMail/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/tatsuki/Documents/GitHub/angularMail/angularMail/src/app/app.html"*/
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/app/app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
