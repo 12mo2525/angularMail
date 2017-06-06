@@ -1,27 +1,68 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Mail Bot System
     </ion-title>
   </ion-navbar>
 </ion-header>
 
+
+
+
+
 <ion-content padding>
-  <ion-item><label>相手の会社名</label><input type="text" placeholder="相手の会社名" [(ngModel)]="partnercompany"></ion-item>
-  <ion-item><label>相手の役職</label><input type="text" [(ngModel)]="partnerposition"></ion-item>
-  <ion-item><label>お客様（名字）</label><input type="text" [(ngModel)]="yourname"></ion-item>
-  <ion-item><label>自分の役職</label><input type="text" [(ngModel)]="myposition"></ion-item>
-  <ion-item><label>氏名</label><input type="text" [(ngModel)]="myname"></ion-item>
+  <p>①メールでの基本情報を入力してください。</p>
+  <ion-item><label>1, </label><input type="text" placeholder="相手の会社名" [(ngModel)]="partnercompany"></ion-item>
+  <ion-item><label>2, </label><input type="text" placeholder="相手の役職" [(ngModel)]="partnerposition"></ion-item>
+  <ion-item><label>3, </label><input type="text" placeholder="相手の名前" [(ngModel)]="yourname"></ion-item>
+  <ion-item><label>4, </label><input type="text" placeholder="自分の会社名" [(ngModel)]="mycompany"></ion-item>
+  <ion-item><label>5, </label><input type="text" placeholder="自分の役職" [(ngModel)]="myposition"></ion-item>
+  <ion-item><label>6, </label><input type="text" placeholder="自分の名前" [(ngModel)]="myname"></ion-item>
+
+　<p></p>
+  <p>②お使いになるテンプレートを選択してください。</p>
+
+  <ion-list>
+    <ion-item>
+      <ion-label><button class="template-button" ion-button full outline>メールテンプレート</button></ion-label>
+      <ion-select [(ngModel)]="toppings" multiple="false" cancelText="キャンセル" okText="進む">
+        <ion-option value="bacon">最初のご挨拶</ion-option>
+        <ion-option value="olives">返信</ion-option>
+        <ion-option value="xcheese"></ion-option>
+        <ion-option value="peppers">Green Peppers</ion-option>
+        <ion-option value="mushrooms">Mushrooms</ion-option>
+        <ion-option value="onions">Onions</ion-option>
+        <ion-option value="pepperoni">Pepperoni</ion-option>
+        <ion-option value="pineapple">Pineapple</ion-option>
+        <ion-option value="sausage">Sausage</ion-option>
+        <ion-option value="Spinach">Spinach</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+
+  <!-- <ion-list>
+    <ion-list-header>
+      テンプレート
+    </ion-list-header>
+    <ion-item><label>ご挨拶</label><input type="button" [(ngModel)]="partnercompany"></ion-item>
+    <ion-item><label>返信</label><input type="button" [(ngModel)]="partnercompany"></ion-item>
+    <ion-item><label>お願い</label><input type="button" [(ngModel)]="partnercompany"></ion-item>
+　</ion-list>
   <ion-item><label>仕事</label><input type="text" [(ngModel)]="business"></ion-item>
   <ion-item><label>出会いの場</label><input type="text" [(ngModel)]="comeacross"></ion-item>
   <ion-item><label>次に会う場所</label><input type="text" [(ngModel)]="nextplace"></ion-item>
-  <ion-item><label>次の仕事</label><input type="text" [(ngModel)]="nextbusiness"></ion-item>
+  <ion-item><label>次の仕事</label><input type="text" [(ngModel)]="nextbusiness"></ion-item> -->
+
+
+
+
   <div class="template">
   株式会社{{partnercompany}} {{partnerposition}}
 
 <p>{{yourname}}　様</p>
 
-株式会社Vries {{myposition}}の{{myname}}です。
+株式会社{{mycompany}} {{myposition}}の{{myname}}です。
 昨日は貴重な{{business}}のお話、ありがとうございました。
 {{yourname}}さまと{{comeacross}}にてご縁をいただきまして、大変光栄です。
 
@@ -34,6 +75,15 @@
 <p>{{myname}}</p>
 
 </div>
+
+<div id="AI">
+※弊社は、AI活用の可能性を探るために、メールでの文章の一部を、AIに代筆してもらっております。
+至らない点もあるとは存じますが、お許しください。
+</div>
+
+
+
+
   The world is your oyster.
   <p>
     If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
