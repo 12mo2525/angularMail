@@ -12,30 +12,28 @@
 
 <ion-content padding>
   <p>①メールでの基本情報を入力してください。</p>
-  <ion-item><label>1, </label><input type="text" placeholder="相手の会社名" [(ngModel)]="partnercompany"></ion-item>
-  <ion-item><label>2, </label><input type="text" placeholder="相手の役職" [(ngModel)]="partnerposition"></ion-item>
-  <ion-item><label>3, </label><input type="text" placeholder="相手の名前" [(ngModel)]="yourname"></ion-item>
-  <ion-item><label>4, </label><input type="text" placeholder="自分の会社名" [(ngModel)]="mycompany"></ion-item>
-  <ion-item><label>5, </label><input type="text" placeholder="自分の役職" [(ngModel)]="myposition"></ion-item>
-  <ion-item><label>6, </label><input type="text" placeholder="自分の名前" [(ngModel)]="myname"></ion-item>
-
+  <ion-list>
+    <div *ngFor ="let element of elements; let idx = index;">
+      <ion-item><label>{{element}}</label><input type="text" [(ngModel)]="anys[idx]"></ion-item>
+    </div>
+  </ion-list>
 　<p></p>
   <p>②お使いになるテンプレートを選択してください。</p>
 
   <ion-list>
     <ion-item>
       <ion-label><button class="template-button" ion-button full outline>メールテンプレート</button></ion-label>
-      <ion-select [(ngModel)]="toppings" multiple="false" cancelText="キャンセル" okText="進む">
-        <ion-option value="bacon">最初のご挨拶</ion-option>
-        <ion-option value="olives">返信</ion-option>
-        <ion-option value="xcheese"></ion-option>
-        <ion-option value="peppers">Green Peppers</ion-option>
-        <ion-option value="mushrooms">Mushrooms</ion-option>
-        <ion-option value="onions">Onions</ion-option>
-        <ion-option value="pepperoni">Pepperoni</ion-option>
-        <ion-option value="pineapple">Pineapple</ion-option>
-        <ion-option value="sausage">Sausage</ion-option>
-        <ion-option value="Spinach">Spinach</ion-option>
+      <ion-select [(ngModel)]="templates" multiple="false" cancelText="キャンセル" okText="進む" (ionChange)="select($event)">
+        <ion-option value=0>名刺交換後</ion-option>
+        <ion-option value=1>アポを取る</ion-option>
+        <ion-option value=2>打ち合わせ後のお礼</ion-option>
+        <ion-option value=3>打ち合わせ日時の変更</ion-option>
+        <ion-option value=3>担当に聞いてみます</ion-option>
+        <ion-option value=4>Onions</ion-option>
+        <ion-option value=5>Pepperoni</ion-option>
+        <ion-option value=6>Pineapple</ion-option>
+        <ion-option value=7>Sausage</ion-option>
+        <ion-option value=8>Spinach</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -57,23 +55,10 @@
 
 
 
-  <div class="template">
-  株式会社{{partnercompany}} {{partnerposition}}
-
-<p>{{yourname}}　様</p>
-
-株式会社{{mycompany}} {{myposition}}の{{myname}}です。
-昨日は貴重な{{business}}のお話、ありがとうございました。
-{{yourname}}さまと{{comeacross}}にてご縁をいただきまして、大変光栄です。
-
-是非{{nextplace}}などで、またお話をお聞かせ頂きたいと存じます。
-その時は{{nextbusiness}}のお話などできたら幸甚です。
-
-まだ、学部生という身分で、至らない点も多々あるかと存じますが、
-今後ともどうぞよろしくお願い致します。
-
-<p>{{myname}}</p>
-
+<div class="template">
+{{anys[0]}}
+<p [innerHTML]="safeMsg"></p>
+<textarea>{{anys[0]}}</textarea>
 </div>
 
 <div id="AI">

@@ -30788,10 +30788,10 @@ function BaseInput_tsickle_Closure_declarations() {
 /* unused harmony export EventManager */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return HAMMER_GESTURE_CONFIG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return HammerGestureConfig; });
-/* unused harmony export DomSanitizer */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return DomSanitizer; });
 /* unused harmony export VERSION */
 /* unused harmony export ɵBROWSER_SANITIZATION_PROVIDERS */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return INTERNAL_BROWSER_PLATFORM_PROVIDERS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return INTERNAL_BROWSER_PLATFORM_PROVIDERS; });
 /* unused harmony export ɵinitDomAdapter */
 /* unused harmony export ɵBrowserDomAdapter */
 /* unused harmony export ɵsetValueOnPath */
@@ -55723,6 +55723,7 @@ webpackEmptyContext.id = 98;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(27);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -55735,19 +55736,76 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var HomePage = (function () {
-    function HomePage(navCtrl) {
+    //message:string = "";
+    function HomePage(navCtrl, sanitizer) {
         this.navCtrl = navCtrl;
+        this.sanitizer = sanitizer;
+        //elements:["","","","",""]
+        this.elements = ["氏名", "相手"];
+        this.anys = ["", "", "", ""];
+        this.templates = 0;
+        this.mymame = "あなたの名前";
+        this.yourname = "相手の名前";
+        this.when = "日時";
+        this.where = "場所";
+        this.mail = "<h1>ww</br>ww</h1>";
+        //message = meets.message;
+        this.safeMsg = sanitizer.bypassSecurityTrustHtml(this.mail);
     }
+    HomePage.prototype.select = function (s_number) {
+        var tmp_message = new message("orgorg", "avgrhqaf", [0]);
+        //message.selectTeplate(number)
+        tmp_message.selectTeplate(s_number);
+        this.elements = tmp_message.elements;
+        this.mail = tmp_message.getMessage();
+        this.safeMsg = this.sanitizer.bypassSecurityTrustHtml(this.mail);
+    };
     return HomePage;
 }());
 HomePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Mail Bot System\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n  <p>①メールでの基本情報を入力してください。</p>\n  <ion-item><label>1, </label><input type="text" placeholder="相手の会社名" [(ngModel)]="partnercompany"></ion-item>\n  <ion-item><label>2, </label><input type="text" placeholder="相手の役職" [(ngModel)]="partnerposition"></ion-item>\n  <ion-item><label>3, </label><input type="text" placeholder="相手の名前" [(ngModel)]="yourname"></ion-item>\n  <ion-item><label>4, </label><input type="text" placeholder="自分の会社名" [(ngModel)]="mycompany"></ion-item>\n  <ion-item><label>5, </label><input type="text" placeholder="自分の役職" [(ngModel)]="myposition"></ion-item>\n  <ion-item><label>6, </label><input type="text" placeholder="自分の名前" [(ngModel)]="myname"></ion-item>\n\n　<p></p>\n  <p>②お使いになるテンプレートを選択してください。</p>\n\n  <ion-list>\n    <ion-item>\n      <ion-label><button class="template-button" ion-button full outline>メールテンプレート</button></ion-label>\n      <ion-select [(ngModel)]="toppings" multiple="false" cancelText="キャンセル" okText="進む">\n        <ion-option value="bacon">最初のご挨拶</ion-option>\n        <ion-option value="olives">返信</ion-option>\n        <ion-option value="xcheese"></ion-option>\n        <ion-option value="peppers">Green Peppers</ion-option>\n        <ion-option value="mushrooms">Mushrooms</ion-option>\n        <ion-option value="onions">Onions</ion-option>\n        <ion-option value="pepperoni">Pepperoni</ion-option>\n        <ion-option value="pineapple">Pineapple</ion-option>\n        <ion-option value="sausage">Sausage</ion-option>\n        <ion-option value="Spinach">Spinach</ion-option>\n      </ion-select>\n    </ion-item>\n  </ion-list>\n\n\n  <!-- <ion-list>\n    <ion-list-header>\n      テンプレート\n    </ion-list-header>\n    <ion-item><label>ご挨拶</label><input type="button" [(ngModel)]="partnercompany"></ion-item>\n    <ion-item><label>返信</label><input type="button" [(ngModel)]="partnercompany"></ion-item>\n    <ion-item><label>お願い</label><input type="button" [(ngModel)]="partnercompany"></ion-item>\n　</ion-list>\n  <ion-item><label>仕事</label><input type="text" [(ngModel)]="business"></ion-item>\n  <ion-item><label>出会いの場</label><input type="text" [(ngModel)]="comeacross"></ion-item>\n  <ion-item><label>次に会う場所</label><input type="text" [(ngModel)]="nextplace"></ion-item>\n  <ion-item><label>次の仕事</label><input type="text" [(ngModel)]="nextbusiness"></ion-item> -->\n\n\n\n\n  <div class="template">\n  株式会社{{partnercompany}} {{partnerposition}}\n\n<p>{{yourname}}　様</p>\n\n株式会社{{mycompany}} {{myposition}}の{{myname}}です。\n昨日は貴重な{{business}}のお話、ありがとうございました。\n{{yourname}}さまと{{comeacross}}にてご縁をいただきまして、大変光栄です。\n\n是非{{nextplace}}などで、またお話をお聞かせ頂きたいと存じます。\nその時は{{nextbusiness}}のお話などできたら幸甚です。\n\nまだ、学部生という身分で、至らない点も多々あるかと存じますが、\n今後ともどうぞよろしくお願い致します。\n\n<p>{{myname}}</p>\n\n</div>\n\n<div id="AI">\n※弊社は、AI活用の可能性を探るために、メールでの文章の一部を、AIに代筆してもらっております。\n至らない点もあるとは存じますが、お許しください。\n</div>\n\n\n\n\n  The world is your oyster.\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.\n  </p>\n</ion-content>\n'/*ion-inline-end:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/tatsuki/Documents/GitHub/angularMail/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Mail Bot System\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n  <p>①メールでの基本情報を入力してください。</p>\n  <ion-list>\n    <div *ngFor ="let element of elements; let idx = index;">\n      <ion-item><label>{{element}}</label><input type="text" [(ngModel)]="anys[idx]"></ion-item>\n    </div>\n  </ion-list>\n　<p></p>\n  <p>②お使いになるテンプレートを選択してください。</p>\n\n  <ion-list>\n    <ion-item>\n      <ion-label><button class="template-button" ion-button full outline>メールテンプレート</button></ion-label>\n      <ion-select [(ngModel)]="templates" multiple="false" cancelText="キャンセル" okText="進む" (ionChange)="select($event)">\n        <ion-option value=0>名刺交換後</ion-option>\n        <ion-option value=1>アポを取る</ion-option>\n        <ion-option value=2>打ち合わせ後のお礼</ion-option>\n        <ion-option value=3>打ち合わせ日時の変更</ion-option>\n        <ion-option value=3>担当に聞いてみます</ion-option>\n        <ion-option value=4>Onions</ion-option>\n        <ion-option value=5>Pepperoni</ion-option>\n        <ion-option value=6>Pineapple</ion-option>\n        <ion-option value=7>Sausage</ion-option>\n        <ion-option value=8>Spinach</ion-option>\n      </ion-select>\n    </ion-item>\n  </ion-list>\n\n\n  <!-- <ion-list>\n    <ion-list-header>\n      テンプレート\n    </ion-list-header>\n    <ion-item><label>ご挨拶</label><input type="button" [(ngModel)]="partnercompany"></ion-item>\n    <ion-item><label>返信</label><input type="button" [(ngModel)]="partnercompany"></ion-item>\n    <ion-item><label>お願い</label><input type="button" [(ngModel)]="partnercompany"></ion-item>\n　</ion-list>\n  <ion-item><label>仕事</label><input type="text" [(ngModel)]="business"></ion-item>\n  <ion-item><label>出会いの場</label><input type="text" [(ngModel)]="comeacross"></ion-item>\n  <ion-item><label>次に会う場所</label><input type="text" [(ngModel)]="nextplace"></ion-item>\n  <ion-item><label>次の仕事</label><input type="text" [(ngModel)]="nextbusiness"></ion-item> -->\n\n\n\n\n<div class="template">\n{{anys[0]}}\n<p [innerHTML]="safeMsg"></p>\n<textarea>{{anys[0]}}</textarea>\n</div>\n\n<div id="AI">\n※弊社は、AI活用の可能性を探るために、メールでの文章の一部を、AIに代筆してもらっております。\n至らない点もあるとは存じますが、お許しください。\n</div>\n\n\n\n\n  The world is your oyster.\n  <p>\n    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.\n  </p>\n</ion-content>\n'/*ion-inline-end:"/Users/tatsuki/Documents/GitHub/angularMail/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["g" /* DomSanitizer */]])
 ], HomePage);
 
+var message = (function () {
+    //static templates:string[] = ["氏名","相手","場所","日時"];
+    function message(name, mail, templates) {
+        this.name = name;
+        this.mail = mail;
+        this.templates = templates;
+        this.elements = ["氏名", "相手", "場所", "日時"];
+        this.names = ["名刺交換後", "アポを取る", "打ち合わせ後のお礼", "日時変更", "担当に聞いてみます。"];
+        this.na_ele = (_a = [[0, 1], [0, 1, 2, 3], [0, 1], [0, 1, 2, 3], [0, 1]], _b = _a[0], _a);
+        this.mails = ['{{anys[0]}}です。<p bind-href=anys[0]></p>さまと{{where}}にてご縁をいただきまして、大変光栄です。是非{{when}}などで、またお話をお聞かせ頂きたいと存じます。まだ、学部生という身分で、至らない点も多々あるかと存じますが、今後ともどうぞよろしくお願い致します。', ""];
+        var _a, _b;
+    }
+    message.prototype.selectTeplate = function (s_number) {
+        this.name = this.names[s_number];
+        this.templates = this.na_ele[s_number];
+        this.mail = this.mails[0];
+    };
+    message.prototype.getName = function () {
+        return this.name;
+    };
+    message.prototype.getMessage = function () {
+        return this.mail;
+    };
+    message.prototype.getTemplate = function () {
+        return this.templates;
+    };
+    return message;
+}());
+// class meets implements message{
+//   constructor(public name:string,public message:string,public templates:number[]){
+//     this.name = "aaaa";
+//     this.message = "fuck";
+//     this.templates = [0,1];
+//   }
+// }
 //# sourceMappingURL=home.js.map
 
 /***/ }),
@@ -74428,7 +74486,7 @@ ResourceLoaderImpl.ctorParameters = function () { return []; };
  * found in the LICENSE file at https://angular.io/license
  */
 var INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS = [
-    __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["g" /* ɵINTERNAL_BROWSER_PLATFORM_PROVIDERS */],
+    __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["h" /* ɵINTERNAL_BROWSER_PLATFORM_PROVIDERS */],
     {
         provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["_14" /* COMPILER_OPTIONS */],
         useValue: { providers: [{ provide: __WEBPACK_IMPORTED_MODULE_0__angular_compiler__["a" /* ResourceLoader */], useClass: ResourceLoaderImpl }] },
@@ -74563,7 +74621,7 @@ var MyApp = (function () {
     return MyApp;
 }());
 MyApp = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/app/app.html"*/
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/tatsuki/Documents/GitHub/angularMail/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/tatsuki/Documents/GitHub/angularMail/src/app/app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
