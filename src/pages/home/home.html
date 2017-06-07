@@ -1,3 +1,10 @@
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
+  <script>
+          $(function () {
+            var clipboard = new Clipboard('.btn');
+          });
+      </script>
 
 <ion-content>
 
@@ -45,14 +52,15 @@
     <p>{{myname}}です。</p>
   <div [innerHTML]="safeMsg"></div>
   <div *ngIf="timeandplace"><p>----------------------</p><p>{{settime}}の{{setplace}}にて</p><p>----------------------</p></div>
+  <h4 *ngIf="use_ai">  ※弊社は、AI活用の可能性を探るために、メールでの文章の一部を、AIに代筆してもらっております。
+    　  至らない点もあるとは存じますが、お許しください。</h4>
   </div>
   <div>
-  <p></p>
-  <h2>③少し不自然な文章になっているかもしれません。弊社のアプリを使っている旨を伝えますか？</h2>
+ <input id="foo" value="ojhulfkjhxt" size="60">
+
   　<ion-item>
-  　  <ion-label id="attention">※弊社は、AI活用の可能性を探るために、メールでの文章の一部を、AIに代筆してもらっております。
-  　  至らない点もあるとは存じますが、お許しください。</ion-label>
-  　  <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox>
+  　  <ion-label >少し不自然な文章になっているかもしれません。弊社のアプリを使っている旨を伝えますか？</ion-label>
+  　  <ion-checkbox [(ngModel)]="use_ai"></ion-checkbox>
   　</ion-item>
 
 </div>
@@ -62,6 +70,6 @@
 
 <ion-footer>
   <ion-title>
-    <button id="footer-button"ion-button round>コピー</button></ion-title>
+    <button class ="btn"id="footer-button"ion-button round data-clipboard-target="#foo">コピー</button></ion-title>
 
 </ion-footer>
