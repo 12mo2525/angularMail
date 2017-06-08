@@ -23,7 +23,7 @@
 
   <ion-list>
     <ion-item>
-      <ion-label><button class="template-button" ion-button full outline><ion-select [(ngModel)]="toppings" multiple="false" cancelText="キャンセル" okText="進む">
+      <ion-label><button class="template-button" ion-button full><ion-select [(ngModel)]="toppings" multiple="false" cancelText="キャンセル" okText="進む">
         <ion-option value="select" selected="true">選択</ion-option>
         <ion-option value="bacon">最初のご挨拶</ion-option>
         <ion-option value="olives">返信</ion-option>
@@ -67,12 +67,11 @@
   　  <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox>
   　</ion-item>
 
+
 </div>
+
+  <!-- <ion-toolbar class="footer"> -->
+    <button id="footer-button"ion-button full>コピー</button>
+  <!-- </ion-toolbar> -->
+
 </ion-content>
-
-
-<ion-footer>
-  <ion-title>
-    <button id="footer-button"ion-button round>コピー</button></ion-title>
-
-</ion-footer>

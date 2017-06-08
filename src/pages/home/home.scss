@@ -1,28 +1,27 @@
 
 #vries {
   width: 100%;
-  height: 30%;
-  // font-size: 30px;
-  color: #007AB7;
+  height: 20%;
   font-family: fantasy;
-  padding: 0;
-  margin: 0;
-  border: 0;
+  margin: -16px 0 -16px 0;
 
-  background-image: url("../../assets/image/vries_image.png"), linear-gradient(to bottom left, white 0%, #9ACDE7 100%);
+  background-image: url("../../assets/image/vries_image.png"), linear-gradient(to bottom left, #EEF5D3 0%, #A4C520 100%);
   position: relative;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   // box-shadow: 3px 3px 3px #CBE6F3;
-
 }
 
 ion-header {
   position: relative;
   font-family: fantasy;
+  text-align: left;
 }
 
+#content {
+  padding-bottom: 60px;
+}
 
 // #vrues:before {
 //   content: "";
@@ -51,14 +50,12 @@ label {
 
 .template-button {
   width: 100%;
-  background-color: #488AFF;
-  color: white;
 }
 
 .template {
   font-size: 14px;
   position: relative;
-  background-color: #CBE6F3;
+  background-color: #DFECAA;
   padding: 5px;
 }
 
@@ -89,11 +86,17 @@ label {
   font-size: 14px;
 }
 
-ion-footer {
-  position: absolute;
+.footer {
+  bottom: 0;
+  right: 0;
+  position: fixed;
 }
 
 #footer-button {
-float: right;
-text-align: center;
+  text-align: center;
+  // font-weight: 700;
+
+  padding: 20px;
+  bottom: 0;
+  position: fixed;
 }
