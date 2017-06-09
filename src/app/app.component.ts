@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { HomePage } from '../pages/home/home';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -18,5 +18,22 @@ export class MyApp {
       splashScreen.hide();
     });
   }
-}
+  // I log Clipboard "copy" errors.
+    public logError( error: Error ) : void {
 
+        console.group( "Clipboard Error" );
+        console.error( error );
+        console.groupEnd();
+
+    }
+
+
+    // I log Clipboard "copy" successes.
+    public logSuccess( value: string ) : void {
+
+        console.group( "Clipboard Success" );
+        console.log( value );
+        console.groupEnd();
+
+    }
+}
