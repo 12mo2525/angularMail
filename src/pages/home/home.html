@@ -1,3 +1,10 @@
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>
+  <script>
+          $(function () {
+            var clipboard = new Clipboard('.btn');
+          });
+      </script>
 
 <ion-content>
 
@@ -15,7 +22,8 @@
   <h2>①メールでの基本情報を入力してください。</h2>
   <ion-item><label>1, </label><input type="text" placeholder="相手の名前" [(ngModel)]="yourname"></ion-item>
   <ion-item><label>2, </label><input type="text" placeholder="自分の名前" [(ngModel)]="myname"></ion-item>
-
+<ion-item *ngIf="timeandplace"><label>3, </label><input type="text" placeholder="日時" [(ngModel)]="settime"></ion-item>
+<ion-item *ngIf="timeandplace"><label>4, </label><input type="text" placeholder="場所" [(ngModel)]="setplace"></ion-item>
 
 
 　<p></p>
@@ -23,6 +31,7 @@
 
   <ion-list>
     <ion-item>
+<<<<<<< HEAD
       <ion-label><button class="template-button" ion-button full><ion-select [(ngModel)]="toppings" multiple="false" cancelText="キャンセル" okText="進む">
         <ion-option value="select" selected="true">選択</ion-option>
         <ion-option value="bacon">最初のご挨拶</ion-option>
@@ -35,43 +44,57 @@
         <ion-option value="pineapple">Pineapple</ion-option>
         <ion-option value="sausage">Sausage</ion-option>
         <ion-option value="Spinach">Spinach</ion-option>
+=======
+      <ion-label><button class="template-button" ion-button full outline><ion-select [(ngModel)]="toppings" multiple="false" cancelText="キャンセル" okText="進む" (ionChange)="selectMessage($event)">
+        <ion-option value="0" selected="true">選択</ion-option>
+        <ion-option value="1">最初のご挨拶</ion-option>
+        <ion-option value="2">返信</ion-option>
+        <ion-option value="3">打ち合わせ日時伝達</ion-option>
+        <ion-option value="4">打ち合わせ変更</ion-option>
+        <ion-option value="5">Mushrooms</ion-option>
+        <ion-option value="6">Onions</ion-option>
+        <ion-option value="7">Pepperoni</ion-option>
+        <ion-option value="8">Pineapple</ion-option>
+        <ion-option value="9">Sausage</ion-option>
+        <ion-option value="10">Spinach</ion-option>
+>>>>>>> 80d50759740f26731b95f2cef316cd32d621cb87
       </ion-select></button></ion-label>
 
     </ion-item>
   </ion-list>
+  <div class="template">
+    <p>{{yourname}}様、お世話になっております。</p>
+    <p>{{myname}}です。</p>
+  <div [innerHTML]="safeMsg"></div>
+  <div *ngIf="timeandplace"><p>----------------------</p><p>{{settime}}の{{setplace}}にて</p><p>----------------------</p></div>
+  <h4 *ngIf="use_ai">  ※弊社は、AI活用の可能性を探るために、メールでの文章の一部を、AIに代筆してもらっております。
+    　  至らない点もあるとは存じますが、お許しください。</h4>
+  </div>
+  <div>
+ <input id="foo" value="ojhulfkjhxt" size="60">
 
-      <div class="template">
-        株式会社{{partnercompany}} {{partnerposition}}
-
-        <p>{{yourname}}　様</p>
-
-        株式会社{{mycompany}} {{myposition}}の{{myname}}です。
-        昨日は貴重な{{business}}のお話、ありがとうございました。
-        {{yourname}}さまと{{comeacross}}にてご縁をいただきまして、大変光栄です。
-
-        是非{{nextplace}}などで、またお話をお聞かせ頂きたいと存じます。
-        その時は{{nextbusiness}}のお話などできたら幸甚です。
-
-        まだ、学部生という身分で、至らない点も多々あるかと存じますが、
-        今後ともどうぞよろしくお願い致します。
-
-        <p>{{myname}}</p>
-
-      </div>
-
-
-  <h2>③少し不自然な文章になっているかもしれません。弊社のアプリを使っている旨を伝えますか？</h2>
   　<ion-item>
-  　  <ion-label id="attention">※弊社は、AI活用の可能性を探るために、メールでの文章の一部を、AIに代筆してもらっております。
-  　  至らない点もあるとは存じますが、お許しください。</ion-label>
-  　  <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox>
+  　  <ion-label >少し不自然な文章になっているかもしれません。弊社のアプリを使っている旨を伝えますか？</ion-label>
+  　  <ion-checkbox [(ngModel)]="use_ai"></ion-checkbox>
   　</ion-item>
 
+<<<<<<< HEAD
+=======
+</div>
+</div>
+</ion-content>
+>>>>>>> 80d50759740f26731b95f2cef316cd32d621cb87
 
 </div>
 
+<<<<<<< HEAD
   <!-- <ion-toolbar class="footer"> -->
     <button id="footer-button"ion-button full>コピー</button>
   <!-- </ion-toolbar> -->
+=======
+<ion-footer>
+  <ion-title>
+    <button class ="btn"id="footer-button" ion-button round data-clipboard-target="#foo">コピー</button></ion-title>
+>>>>>>> 80d50759740f26731b95f2cef316cd32d621cb87
 
 </ion-content>

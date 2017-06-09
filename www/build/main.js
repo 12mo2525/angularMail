@@ -17345,11 +17345,11 @@ var /** @type {?} */ DEFAULT_CSS_CLASS = 'ion-page';
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_constants__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__config_config__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__navigation_nav_util__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__menu_controller__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__menu_controller__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_platform__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__transitions_transition_ios__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__transitions_transition_md__ = __webpack_require__(230);
@@ -20205,7 +20205,7 @@ var /** @type {?} */ CLS = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_map__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(23);
 /* unused harmony export AbstractControlDirective */
 /* unused harmony export AbstractFormGroupDirective */
 /* unused harmony export CheckboxControlValueAccessor */
@@ -27563,7 +27563,7 @@ var IonicFormInput = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ion__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__navigation_nav_util__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_util__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_keyboard__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_keyboard__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__navigation_nav_controller__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__platform_platform__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__util_scroll_view__ = __webpack_require__(182);
@@ -29677,1102 +29677,6 @@ var /** @type {?} */ KEY_TAB = 9;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_util__ = __webpack_require__(2);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuController; });
-
-/**
- * \@name MenuController
- * \@description
- * The MenuController is a provider which makes it easy to control a [Menu](../Menu).
- * Its methods can be used to display the menu, enable the menu, toggle the menu, and more.
- * The controller will grab a reference to the menu by the `side`, `id`, or, if neither
- * of these are passed to it, it will grab the first menu it finds.
- *
- *
- * \@usage
- *
- * Add a basic menu component to start with. See the [Menu](../Menu) API docs
- * for more information on adding menu components.
- *
- * ```html
- * <ion-menu [content]="mycontent">
- *   <ion-content>
- *     <ion-list>
- *     ...
- *     </ion-list>
- *   </ion-content>
- * </ion-menu>
- *
- * <ion-nav #mycontent [root]="rootPage"></ion-nav>
- * ```
- *
- * To call the controller methods, inject the `MenuController` provider
- * into the page. Then, create some methods for opening, closing, and
- * toggling the menu.
- *
- * ```ts
- * import { Component } from '\@angular/core';
- * import { MenuController } from 'ionic-angular';
- *
- * \@Component({...})
- * export class MyPage {
- *
- *  constructor(public menuCtrl: MenuController) {
- *
- *  }
- *
- *  openMenu() {
- *    this.menuCtrl.open();
- *  }
- *
- *  closeMenu() {
- *    this.menuCtrl.close();
- *  }
- *
- *  toggleMenu() {
- *    this.menuCtrl.toggle();
- *  }
- *
- * }
- * ```
- *
- * Since only one menu exists, the `MenuController` will grab the
- * correct menu and call the correct method for each.
- *
- *
- * ### Multiple Menus on Different Sides
- *
- * For applications with both a left and right menu, the desired menu can be
- * grabbed by passing the `side` of the menu. If nothing is passed, it will
- * default to the `"left"` menu.
- *
- * ```html
- * <ion-menu side="left" [content]="mycontent">...</ion-menu>
- * <ion-menu side="right" [content]="mycontent">...</ion-menu>
- * <ion-nav #mycontent [root]="rootPage"></ion-nav>
- * ```
- *
- * ```ts
- *  toggleLeftMenu() {
- *    this.menuCtrl.toggle();
- *  }
- *
- *  toggleRightMenu() {
- *    this.menuCtrl.toggle('right');
- *  }
- * ```
- *
- *
- * ### Multiple Menus on the Same Side
- *
- * An application can have multiple menus on the same side. In order to determine
- * the menu to control, an `id` should be passed. In the example below, the menu
- * with the `authenticated` id will be enabled, and the menu with the `unauthenticated`
- * id will be disabled.
- *
- * ```html
- * <ion-menu id="authenticated" side="left" [content]="mycontent">...</ion-menu>
- * <ion-menu id="unauthenticated" side="left" [content]="mycontent">...</ion-menu>
- * <ion-nav #mycontent [root]="rootPage"></ion-nav>
- * ```
- *
- * ```ts
- *  enableAuthenticatedMenu() {
- *    this.menuCtrl.enable(true, 'authenticated');
- *    this.menuCtrl.enable(false, 'unauthenticated');
- *  }
- * ```
- *
- * Note: if an app only has one menu, there is no reason to pass an `id`.
- *
- *
- * \@demo /docs/demos/src/menu/
- *
- * @see {\@link /docs/components#menus Menu Component Docs}
- * @see {\@link ../Menu Menu API Docs}
- *
- */
-var MenuController = (function () {
-    function MenuController() {
-        this._menus = [];
-    }
-    /**
-     * Programatically open the Menu.
-     * @param {?=} menuId
-     * @return {?}
-     */
-    MenuController.prototype.open = function (menuId) {
-        var /** @type {?} */ menu = this.get(menuId);
-        if (menu && !this.isAnimating()) {
-            var /** @type {?} */ openedMenu = this.getOpen();
-            if (openedMenu && menu !== openedMenu) {
-                openedMenu.setOpen(false, false);
-            }
-            return menu.open();
-        }
-        return Promise.resolve(false);
-    };
-    /**
-     * Programatically close the Menu. If no `menuId` is given as the first
-     * argument then it'll close any menu which is open. If a `menuId`
-     * is given then it'll close that exact menu.
-     * @param {?=} menuId
-     * @return {?}
-     */
-    MenuController.prototype.close = function (menuId) {
-        var /** @type {?} */ menu;
-        if (menuId) {
-            // find the menu by its id
-            menu = this.get(menuId);
-        }
-        else {
-            // find the menu that is open
-            menu = this.getOpen();
-        }
-        if (menu) {
-            // close the menu
-            return menu.close();
-        }
-        return Promise.resolve(false);
-    };
-    /**
-     * Toggle the menu. If it's closed, it will open, and if opened, it
-     * will close.
-     * @param {?=} menuId
-     * @return {?}
-     */
-    MenuController.prototype.toggle = function (menuId) {
-        var /** @type {?} */ menu = this.get(menuId);
-        if (menu && !this.isAnimating()) {
-            var /** @type {?} */ openedMenu = this.getOpen();
-            if (openedMenu && menu !== openedMenu) {
-                openedMenu.setOpen(false, false);
-            }
-            return menu.toggle();
-        }
-        return Promise.resolve(false);
-    };
-    /**
-     * Used to enable or disable a menu. For example, there could be multiple
-     * left menus, but only one of them should be able to be opened at the same
-     * time. If there are multiple menus on the same side, then enabling one menu
-     * will also automatically disable all the others that are on the same side.
-     * @param {?} shouldEnable
-     * @param {?=} menuId
-     * @return {?}
-     */
-    MenuController.prototype.enable = function (shouldEnable, menuId) {
-        var /** @type {?} */ menu = this.get(menuId);
-        if (menu) {
-            return menu.enable(shouldEnable);
-        }
-    };
-    /**
-     * Used to enable or disable the ability to swipe open the menu.
-     * @param {?} shouldEnable
-     * @param {?=} menuId
-     * @return {?}
-     */
-    MenuController.prototype.swipeEnable = function (shouldEnable, menuId) {
-        var /** @type {?} */ menu = this.get(menuId);
-        if (menu) {
-            return menu.swipeEnable(shouldEnable);
-        }
-    };
-    /**
-     * If the menuId is not specified, it returns true if ANY menu is currenly open.
-     * @param {?=} menuId
-     * @return {?}
-     */
-    MenuController.prototype.isOpen = function (menuId) {
-        if (menuId) {
-            var /** @type {?} */ menu = this.get(menuId);
-            return menu && menu.isOpen || false;
-        }
-        else {
-            return !!this.getOpen();
-        }
-    };
-    /**
-     * @param {?=} menuId
-     * @return {?}
-     */
-    MenuController.prototype.isEnabled = function (menuId) {
-        var /** @type {?} */ menu = this.get(menuId);
-        return menu && menu.enabled || false;
-    };
-    /**
-     * Used to get a menu instance. If a `menuId` is not provided then it'll
-     * return the first menu found. If a `menuId` is `left` or `right`, then
-     * it'll return the enabled menu on that side. Otherwise, if a `menuId` is
-     * provided, then it'll try to find the menu using the menu's `id`
-     * property. If a menu is not found then it'll return `null`.
-     * @param {?=} menuId
-     * @return {?}
-     */
-    MenuController.prototype.get = function (menuId) {
-        var /** @type {?} */ menu;
-        if (menuId === 'left' || menuId === 'right') {
-            // there could be more than one menu on the same side
-            // so first try to get the enabled one
-            menu = this._menus.find(function (m) { return m.side === menuId && m.enabled; });
-            if (menu) {
-                return menu;
-            }
-            // didn't find a menu side that is enabled
-            // so try to get the first menu side found
-            return this._menus.find(function (m) { return m.side === menuId; }) || null;
-        }
-        else if (menuId) {
-            // the menuId was not left or right
-            // so try to get the menu by its "id"
-            return this._menus.find(function (m) { return m.id === menuId; }) || null;
-        }
-        // return the first enabled menu
-        menu = this._menus.find(function (m) { return m.enabled; });
-        if (menu) {
-            return menu;
-        }
-        // get the first menu in the array, if one exists
-        return (this._menus.length ? this._menus[0] : null);
-    };
-    /**
-     * @return {?}
-     */
-    MenuController.prototype.getOpen = function () {
-        return this._menus.find(function (m) { return m.isOpen; });
-    };
-    /**
-     * @return {?}
-     */
-    MenuController.prototype.getMenus = function () {
-        return this._menus;
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    MenuController.prototype.isAnimating = function () {
-        return this._menus.some(function (menu) { return menu.isAnimating(); });
-    };
-    /**
-     * @hidden
-     * @param {?} menu
-     * @return {?}
-     */
-    MenuController.prototype._register = function (menu) {
-        (void 0) /* assert */;
-        this._menus.push(menu);
-    };
-    /**
-     * @hidden
-     * @param {?} menu
-     * @return {?}
-     */
-    MenuController.prototype._unregister = function (menu) {
-        (void 0) /* assert */;
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util_util__["l" /* removeArrayItem */])(this._menus, menu);
-    };
-    /**
-     * @hidden
-     * @param {?} menu
-     * @return {?}
-     */
-    MenuController.prototype._setActiveMenu = function (menu) {
-        (void 0) /* assert */;
-        (void 0) /* assert */;
-        // if this menu should be enabled
-        // then find all the other menus on this same side
-        // and automatically disable other same side menus
-        var /** @type {?} */ side = menu.side;
-        this._menus
-            .filter(function (m) { return m.side === side && m !== menu; })
-            .map(function (m) { return m.enable(false); });
-    };
-    /**
-     * @hidden
-     * @param {?} name
-     * @param {?} cls
-     * @return {?}
-     */
-    MenuController.registerType = function (name, cls) {
-        menuTypes[name] = cls;
-    };
-    /**
-     * @hidden
-     * @param {?} type
-     * @param {?} menuCmp
-     * @param {?} plt
-     * @return {?}
-     */
-    MenuController.create = function (type, menuCmp, plt) {
-        return new menuTypes[type](menuCmp, plt);
-    };
-    return MenuController;
-}());
-
-function MenuController_tsickle_Closure_declarations() {
-    /** @type {?} */
-    MenuController.prototype._menus;
-}
-var /** @type {?} */ menuTypes = {};
-//# sourceMappingURL=menu-controller.js.map
-
-/***/ }),
-/* 24 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_config__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_controller__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_dom__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__key__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__platform__ = __webpack_require__(3);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Keyboard; });
-
-
-
-
-
-
-/**
- * \@name Keyboard
- * \@description
- * The `Keyboard` class allows you to work with the keyboard events provided
- * by the Ionic keyboard plugin.
- *
- * \@usage
- * ```ts
- * export class MyClass {
- *   constructor(public keyboard: Keyboard) {
- *
- *   }
- * }
- * ```
- */
-var Keyboard = (function () {
-    /**
-     * @param {?} config
-     * @param {?} _plt
-     * @param {?} _zone
-     * @param {?} _dom
-     */
-    function Keyboard(config, _plt, _zone, _dom) {
-        var _this = this;
-        this._plt = _plt;
-        this._zone = _zone;
-        this._dom = _dom;
-        this.focusOutline(config.get('focusOutline'));
-        var win = _plt.win();
-        _plt.registerListener(win, 'native.keyboardhide', function () {
-            _plt.cancelTimeout(_this._tmr);
-            _this._tmr = _plt.timeout(function () {
-                // this custom cordova plugin event fires when the keyboard will hide
-                // useful when the virtual keyboard is closed natively
-                // https://github.com/driftyco/ionic-plugin-keyboard
-                if (_this.isOpen()) {
-                    _this._plt.focusOutActiveElement();
-                }
-            }, 80);
-        }, { zone: false, passive: true });
-        _plt.registerListener(win, 'native.keyboardshow', function () {
-            _plt.cancelTimeout(_this._tmr);
-        }, { zone: false, passive: true });
-    }
-    /**
-     * Check to see if the keyboard is open or not.
-     *
-     * ```ts
-     * export class MyClass {
-     *   constructor(public keyboard: Keyboard) {
-     *
-     *   }
-     *
-     *   keyboardCheck() {
-     *     console.log('The keyboard is open:', this.keyboard.isOpen());
-     *   }
-     * }
-     * ```
-     *
-     * @return {?}
-     */
-    Keyboard.prototype.isOpen = function () {
-        return this.hasFocusedTextInput();
-    };
-    /**
-     * When the keyboard is closed, call any methods you want.
-     *
-     * ```ts
-     * export class MyClass {
-     *   constructor(public keyboard: Keyboard) {
-     *     this.keyboard.onClose(this.closeCallback);
-     *   }
-     *   closeCallback() {
-     *     // call what ever functionality you want on keyboard close
-     *     console.log('Closing time');
-     *   }
-     * }
-     * ```
-     *
-     * @param {?} callback
-     * @param {?=} pollingInternval
-     * @param {?=} pollingChecksMax
-     * @return {?}
-     */
-    Keyboard.prototype.onClose = function (callback, pollingInternval, pollingChecksMax) {
-        if (pollingInternval === void 0) { pollingInternval = KEYBOARD_CLOSE_POLLING; }
-        if (pollingChecksMax === void 0) { pollingChecksMax = KEYBOARD_POLLING_CHECKS_MAX; }
-        (void 0) /* console.debug */;
-        var /** @type {?} */ self = this;
-        var /** @type {?} */ checks = 0;
-        var /** @type {?} */ promise = null;
-        if (!callback) {
-            // a callback wasn't provided, so let's return a promise instead
-            promise = new Promise(function (resolve) { callback = resolve; });
-        }
-        /**
-         * @return {?}
-         */
-        function checkKeyboard() {
-            (void 0) /* console.debug */;
-            if (!self.isOpen() || checks > pollingChecksMax) {
-                self._plt.timeout(function () {
-                    self._zone.run(function () {
-                        (void 0) /* console.debug */;
-                        callback();
-                    });
-                }, 400);
-            }
-            else {
-                self._plt.timeout(checkKeyboard, pollingInternval);
-            }
-            checks++;
-        }
-        self._plt.timeout(checkKeyboard, pollingInternval);
-        return promise;
-    };
-    /**
-     * Programmatically close the keyboard.
-     * @return {?}
-     */
-    Keyboard.prototype.close = function () {
-        var _this = this;
-        this._dom.read(function () {
-            if (_this.isOpen()) {
-                // only focus out when a text input has focus
-                (void 0) /* console.debug */;
-                _this._dom.write(function () {
-                    _this._plt.focusOutActiveElement();
-                });
-            }
-        });
-    };
-    /**
-     * @hidden
-     * @param {?} setting
-     * @return {?}
-     */
-    Keyboard.prototype.focusOutline = function (setting) {
-        /* Focus Outline
-         * --------------------------------------------------
-         * By default, when a keydown event happens from a tab key, then
-         * the 'focus-outline' css class is added to the body element
-         * so focusable elements have an outline. On a mousedown or
-         * touchstart event, then the 'focus-outline' css class is removed.
-         *
-         * Config default overrides:
-         * focusOutline: true     - Always add the focus-outline
-         * focusOutline: false    - Do not add the focus-outline
-         */
-        var /** @type {?} */ self = this;
-        var /** @type {?} */ platform = self._plt;
-        var /** @type {?} */ doc = platform.doc();
-        var /** @type {?} */ isKeyInputEnabled = false;
-        var /** @type {?} */ unRegMouse;
-        var /** @type {?} */ unRegTouch;
-        var /** @type {?} */ evOpts = { passive: true, zone: false };
-        /**
-         * @return {?}
-         */
-        function cssClass() {
-            self._dom.write(function () {
-                ((platform.doc().body.classList))[isKeyInputEnabled ? 'add' : 'remove']('focus-outline');
-            });
-        }
-        if (setting === true) {
-            isKeyInputEnabled = true;
-            return cssClass();
-        }
-        else if (setting === false) {
-            return;
-        }
-        /**
-         * @param {?} ev
-         * @return {?}
-         */
-        function keyDown(ev) {
-            if (!isKeyInputEnabled && ev.keyCode === __WEBPACK_IMPORTED_MODULE_4__key__["h" /* KEY_TAB */]) {
-                isKeyInputEnabled = true;
-                enableKeyInput();
-            }
-        }
-        /**
-         * @return {?}
-         */
-        function pointerDown() {
-            isKeyInputEnabled = false;
-            enableKeyInput();
-        }
-        /**
-         * @return {?}
-         */
-        function enableKeyInput() {
-            cssClass();
-            unRegMouse && unRegMouse();
-            unRegTouch && unRegTouch();
-            if (isKeyInputEnabled) {
-                // listen for when a mousedown or touchstart event happens
-                unRegMouse = platform.registerListener(doc, 'mousedown', pointerDown, evOpts);
-                unRegTouch = platform.registerListener(doc, 'touchstart', pointerDown, evOpts);
-            }
-        }
-        // always listen for tab keydown events
-        platform.registerListener(platform.doc(), 'keydown', keyDown, evOpts);
-    };
-    /**
-     * @return {?}
-     */
-    Keyboard.prototype.hasFocusedTextInput = function () {
-        var /** @type {?} */ activeEle = this._plt.getActiveElement();
-        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__util_dom__["e" /* isTextInput */])(activeEle)) {
-            return (activeEle.parentElement.querySelector(':focus') === activeEle);
-        }
-        return false;
-    };
-    return Keyboard;
-}());
-
-Keyboard.decorators = [
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* Injectable */] },
-];
-/**
- * @nocollapse
- */
-Keyboard.ctorParameters = function () { return [
-    { type: __WEBPACK_IMPORTED_MODULE_1__config_config__["b" /* Config */], },
-    { type: __WEBPACK_IMPORTED_MODULE_5__platform__["a" /* Platform */], },
-    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* NgZone */], },
-    { type: __WEBPACK_IMPORTED_MODULE_2__dom_controller__["a" /* DomController */], },
-]; };
-function Keyboard_tsickle_Closure_declarations() {
-    /** @type {?} */
-    Keyboard.decorators;
-    /**
-     * @nocollapse
-     * @type {?}
-     */
-    Keyboard.ctorParameters;
-    /** @type {?} */
-    Keyboard.prototype._tmr;
-    /** @type {?} */
-    Keyboard.prototype._plt;
-    /** @type {?} */
-    Keyboard.prototype._zone;
-    /** @type {?} */
-    Keyboard.prototype._dom;
-}
-var /** @type {?} */ KEYBOARD_CLOSE_POLLING = 150;
-var /** @type {?} */ KEYBOARD_POLLING_CHECKS_MAX = 100;
-//# sourceMappingURL=keyboard.js.map
-
-/***/ }),
-/* 25 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animations_animation__ = __webpack_require__(10);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Transition; });
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-
-/**
- * @hidden
- *
- * - play
- * - Add before classes - DOM WRITE
- * - Remove before classes - DOM WRITE
- * - Add before inline styles - DOM WRITE
- * - set inline FROM styles - DOM WRITE
- * - RAF
- * - read toolbar dimensions - DOM READ
- * - write content top/bottom padding - DOM WRITE
- * - set css transition duration/easing - DOM WRITE
- * - RAF
- * - set inline TO styles - DOM WRITE
- */
-var Transition = (function (_super) {
-    __extends(Transition, _super);
-    /**
-     * @param {?} plt
-     * @param {?} enteringView
-     * @param {?} leavingView
-     * @param {?} opts
-     */
-    function Transition(plt, enteringView, leavingView, opts) {
-        var _this = _super.call(this, plt, null, opts) || this;
-        _this.enteringView = enteringView;
-        _this.leavingView = leavingView;
-        return _this;
-    }
-    /**
-     * @return {?}
-     */
-    Transition.prototype.init = function () { };
-    /**
-     * @param {?} trnsStart
-     * @return {?}
-     */
-    Transition.prototype.registerStart = function (trnsStart) {
-        this._trnsStart = trnsStart;
-    };
-    /**
-     * @return {?}
-     */
-    Transition.prototype.start = function () {
-        this._trnsStart && this._trnsStart();
-        this._trnsStart = null;
-        // bubble up start
-        this.parent && this.parent.start();
-    };
-    /**
-     * @return {?}
-     */
-    Transition.prototype.destroy = function () {
-        _super.prototype.destroy.call(this);
-        this.parent = this.enteringView = this.leavingView = this._trnsStart = null;
-    };
-    return Transition;
-}(__WEBPACK_IMPORTED_MODULE_0__animations_animation__["a" /* Animation */]));
-
-function Transition_tsickle_Closure_declarations() {
-    /** @type {?} */
-    Transition.prototype._trnsStart;
-    /** @type {?} */
-    Transition.prototype.parent;
-    /** @type {?} */
-    Transition.prototype.trnsId;
-    /** @type {?} */
-    Transition.prototype.enteringView;
-    /** @type {?} */
-    Transition.prototype.leavingView;
-}
-//# sourceMappingURL=transition.js.map
-
-/***/ }),
-/* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ion__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__debouncer__ = __webpack_require__(179);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseInput; });
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-
-
-
-
-var BaseInput = (function (_super) {
-    __extends(BaseInput, _super);
-    /**
-     * @param {?} config
-     * @param {?} elementRef
-     * @param {?} renderer
-     * @param {?} name
-     * @param {?} _defaultValue
-     * @param {?} _form
-     * @param {?} _item
-     * @param {?} ngControl
-     */
-    function BaseInput(config, elementRef, renderer, name, _defaultValue, _form, _item, ngControl) {
-        var _this = _super.call(this, config, elementRef, renderer, name) || this;
-        _this._defaultValue = _defaultValue;
-        _this._form = _form;
-        _this._item = _item;
-        _this._isFocus = false;
-        _this._disabled = false;
-        _this._debouncer = new __WEBPACK_IMPORTED_MODULE_3__debouncer__["a" /* TimeoutDebouncer */](0);
-        _this._init = false;
-        _this._initModel = false;
-        /**
-         * \@output {Range} Emitted when the range selector drag starts.
-         */
-        _this.ionFocus = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* EventEmitter */]();
-        /**
-         * \@output {Range} Emitted when the range value changes.
-         */
-        _this.ionChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* EventEmitter */]();
-        /**
-         * \@output {Range} Emitted when the range selector drag ends.
-         */
-        _this.ionBlur = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* EventEmitter */]();
-        _form && _form.register(_this);
-        _this._value = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["f" /* deepCopy */])(_this._defaultValue);
-        if (_item) {
-            _this.id = name + '-' + _item.registerInput(name);
-            _this._labelId = 'lbl-' + _item.id;
-            _this._item.setElementClass('item-' + name, true);
-        }
-        // If the user passed a ngControl we need to set the valueAccessor
-        if (ngControl) {
-            ngControl.valueAccessor = _this;
-        }
-        return _this;
-    }
-    Object.defineProperty(BaseInput.prototype, "disabled", {
-        /**
-         * \@input {boolean} If true, the user cannot interact with this element.
-         * @return {?}
-         */
-        get: function () {
-            return this._disabled;
-        },
-        /**
-         * @param {?} val
-         * @return {?}
-         */
-        set: function (val) {
-            this.setDisabledState(val);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(BaseInput.prototype, "value", {
-        /**
-         * @return {?}
-         */
-        get: function () {
-            return this._value;
-        },
-        /**
-         * @param {?} val
-         * @return {?}
-         */
-        set: function (val) {
-            if (this._writeValue(val)) {
-                this.onChange();
-                this._fireIonChange();
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    /**
-     * @param {?} val
-     * @return {?}
-     */
-    BaseInput.prototype.setValue = function (val) {
-        this.value = val;
-    };
-    /**
-     * @hidden
-     * @param {?} isDisabled
-     * @return {?}
-     */
-    BaseInput.prototype.setDisabledState = function (isDisabled) {
-        this._disabled = isDisabled = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["e" /* isTrueProperty */])(isDisabled);
-        this._item && this._item.setElementClass("item-" + this._componentName + "-disabled", isDisabled);
-    };
-    /**
-     * @hidden
-     * @param {?} val
-     * @return {?}
-     */
-    BaseInput.prototype.writeValue = function (val) {
-        if (this._writeValue(val)) {
-            if (this._initModel) {
-                this._fireIonChange();
-            }
-            else if (this._init) {
-                // ngModel fires the first time too late, we need to skip the first ngModel update
-                this._initModel = true;
-            }
-        }
-    };
-    /**
-     * @hidden
-     * @param {?} val
-     * @return {?}
-     */
-    BaseInput.prototype._writeValue = function (val) {
-        (void 0) /* assert */;
-        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["g" /* isUndefined */])(val)) {
-            return false;
-        }
-        var /** @type {?} */ normalized;
-        if (val === null) {
-            normalized = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["f" /* deepCopy */])(this._defaultValue);
-        }
-        else {
-            normalized = this._inputNormalize(val);
-        }
-        var /** @type {?} */ notUpdate = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["g" /* isUndefined */])(normalized) || !this._inputShouldChange(normalized);
-        if (notUpdate) {
-            return false;
-        }
-        (void 0) /* console.debug */;
-        this._value = normalized;
-        this._inputCheckHasValue(normalized);
-        if (this._init) {
-            this._inputUpdated();
-        }
-        return true;
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype._fireIonChange = function () {
-        var _this = this;
-        if (this._init) {
-            this._debouncer.debounce(function () {
-                (void 0) /* assert */;
-                _this.ionChange.emit(_this._inputChangeEvent());
-                _this._initModel = true;
-            });
-        }
-    };
-    /**
-     * @hidden
-     * @param {?} fn
-     * @return {?}
-     */
-    BaseInput.prototype.registerOnChange = function (fn) {
-        this._onChanged = fn;
-    };
-    /**
-     * @hidden
-     * @param {?} fn
-     * @return {?}
-     */
-    BaseInput.prototype.registerOnTouched = function (fn) {
-        this._onTouched = fn;
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype._initialize = function () {
-        if (this._init) {
-            (void 0) /* assert */;
-            return;
-        }
-        this._init = true;
-        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["c" /* isPresent */])(this._value)) {
-            this._inputUpdated();
-        }
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype._fireFocus = function () {
-        if (this._isFocus) {
-            return;
-        }
-        (void 0) /* assert */;
-        (void 0) /* assert */;
-        this._isFocus = true;
-        this.ionFocus.emit(this);
-        this._inputUpdated();
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype._fireBlur = function () {
-        if (!this._isFocus) {
-            return;
-        }
-        (void 0) /* assert */;
-        (void 0) /* assert */;
-        this._isFocus = false;
-        this.ionBlur.emit(this);
-        this._inputUpdated();
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype.onChange = function () {
-        this._onChanged && this._onChanged(this._inputNgModelEvent());
-        this._onTouched && this._onTouched();
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype.isFocus = function () {
-        return this._isFocus;
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype.hasValue = function () {
-        var /** @type {?} */ val = this._value;
-        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["d" /* isArray */])(val)
-            ? val.length > 0
-            : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["c" /* isPresent */])(val);
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype.ngOnDestroy = function () {
-        this._form && this._form.deregister(this);
-        this._init = false;
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype.ngAfterContentInit = function () {
-        this._initialize();
-    };
-    /**
-     * @hidden
-     * @param {?} val
-     * @return {?}
-     */
-    BaseInput.prototype._inputCheckHasValue = function (val) {
-        if (!this._item) {
-            return;
-        }
-        this._item.setElementClass('input-has-value', this.hasValue());
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype.initFocus = function () { };
-    /**
-     * @hidden
-     * @param {?} val
-     * @return {?}
-     */
-    BaseInput.prototype._inputNormalize = function (val) {
-        return val;
-    };
-    /**
-     * @hidden
-     * @param {?} val
-     * @return {?}
-     */
-    BaseInput.prototype._inputShouldChange = function (val) {
-        return this._value !== val;
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype._inputChangeEvent = function () {
-        return this;
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype._inputNgModelEvent = function () {
-        return this._value;
-    };
-    /**
-     * @hidden
-     * @return {?}
-     */
-    BaseInput.prototype._inputUpdated = function () {
-        (void 0) /* assert */;
-    };
-    return BaseInput;
-}(__WEBPACK_IMPORTED_MODULE_2__components_ion__["a" /* Ion */]));
-
-BaseInput.propDecorators = {
-    'ionFocus': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Output */] },],
-    'ionChange': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Output */] },],
-    'ionBlur': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Output */] },],
-    'disabled': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Input */] },],
-};
-function BaseInput_tsickle_Closure_declarations() {
-    /** @type {?} */
-    BaseInput.propDecorators;
-    /** @type {?} */
-    BaseInput.prototype._value;
-    /** @type {?} */
-    BaseInput.prototype._onChanged;
-    /** @type {?} */
-    BaseInput.prototype._onTouched;
-    /** @type {?} */
-    BaseInput.prototype._isFocus;
-    /** @type {?} */
-    BaseInput.prototype._labelId;
-    /** @type {?} */
-    BaseInput.prototype._disabled;
-    /** @type {?} */
-    BaseInput.prototype._debouncer;
-    /** @type {?} */
-    BaseInput.prototype._init;
-    /** @type {?} */
-    BaseInput.prototype._initModel;
-    /** @type {?} */
-    BaseInput.prototype.id;
-    /**
-     * \@output {Range} Emitted when the range selector drag starts.
-     * @type {?}
-     */
-    BaseInput.prototype.ionFocus;
-    /**
-     * \@output {Range} Emitted when the range value changes.
-     * @type {?}
-     */
-    BaseInput.prototype.ionChange;
-    /**
-     * \@output {Range} Emitted when the range selector drag ends.
-     * @type {?}
-     */
-    BaseInput.prototype.ionBlur;
-    /** @type {?} */
-    BaseInput.prototype._defaultValue;
-    /** @type {?} */
-    BaseInput.prototype._form;
-    /** @type {?} */
-    BaseInput.prototype._item;
-}
-//# sourceMappingURL=base-input.js.map
-
-/***/ }),
-/* 27 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BrowserModule; });
@@ -30788,10 +29692,10 @@ function BaseInput_tsickle_Closure_declarations() {
 /* unused harmony export EventManager */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return HAMMER_GESTURE_CONFIG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return HammerGestureConfig; });
-/* unused harmony export DomSanitizer */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return DomSanitizer; });
 /* unused harmony export VERSION */
 /* unused harmony export ɵBROWSER_SANITIZATION_PROVIDERS */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return INTERNAL_BROWSER_PLATFORM_PROVIDERS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return INTERNAL_BROWSER_PLATFORM_PROVIDERS; });
 /* unused harmony export ɵinitDomAdapter */
 /* unused harmony export ɵBrowserDomAdapter */
 /* unused harmony export ɵsetValueOnPath */
@@ -35276,12 +34180,1108 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["G" /* Version */]
 
 
 /***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__util_util__ = __webpack_require__(2);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuController; });
+
+/**
+ * \@name MenuController
+ * \@description
+ * The MenuController is a provider which makes it easy to control a [Menu](../Menu).
+ * Its methods can be used to display the menu, enable the menu, toggle the menu, and more.
+ * The controller will grab a reference to the menu by the `side`, `id`, or, if neither
+ * of these are passed to it, it will grab the first menu it finds.
+ *
+ *
+ * \@usage
+ *
+ * Add a basic menu component to start with. See the [Menu](../Menu) API docs
+ * for more information on adding menu components.
+ *
+ * ```html
+ * <ion-menu [content]="mycontent">
+ *   <ion-content>
+ *     <ion-list>
+ *     ...
+ *     </ion-list>
+ *   </ion-content>
+ * </ion-menu>
+ *
+ * <ion-nav #mycontent [root]="rootPage"></ion-nav>
+ * ```
+ *
+ * To call the controller methods, inject the `MenuController` provider
+ * into the page. Then, create some methods for opening, closing, and
+ * toggling the menu.
+ *
+ * ```ts
+ * import { Component } from '\@angular/core';
+ * import { MenuController } from 'ionic-angular';
+ *
+ * \@Component({...})
+ * export class MyPage {
+ *
+ *  constructor(public menuCtrl: MenuController) {
+ *
+ *  }
+ *
+ *  openMenu() {
+ *    this.menuCtrl.open();
+ *  }
+ *
+ *  closeMenu() {
+ *    this.menuCtrl.close();
+ *  }
+ *
+ *  toggleMenu() {
+ *    this.menuCtrl.toggle();
+ *  }
+ *
+ * }
+ * ```
+ *
+ * Since only one menu exists, the `MenuController` will grab the
+ * correct menu and call the correct method for each.
+ *
+ *
+ * ### Multiple Menus on Different Sides
+ *
+ * For applications with both a left and right menu, the desired menu can be
+ * grabbed by passing the `side` of the menu. If nothing is passed, it will
+ * default to the `"left"` menu.
+ *
+ * ```html
+ * <ion-menu side="left" [content]="mycontent">...</ion-menu>
+ * <ion-menu side="right" [content]="mycontent">...</ion-menu>
+ * <ion-nav #mycontent [root]="rootPage"></ion-nav>
+ * ```
+ *
+ * ```ts
+ *  toggleLeftMenu() {
+ *    this.menuCtrl.toggle();
+ *  }
+ *
+ *  toggleRightMenu() {
+ *    this.menuCtrl.toggle('right');
+ *  }
+ * ```
+ *
+ *
+ * ### Multiple Menus on the Same Side
+ *
+ * An application can have multiple menus on the same side. In order to determine
+ * the menu to control, an `id` should be passed. In the example below, the menu
+ * with the `authenticated` id will be enabled, and the menu with the `unauthenticated`
+ * id will be disabled.
+ *
+ * ```html
+ * <ion-menu id="authenticated" side="left" [content]="mycontent">...</ion-menu>
+ * <ion-menu id="unauthenticated" side="left" [content]="mycontent">...</ion-menu>
+ * <ion-nav #mycontent [root]="rootPage"></ion-nav>
+ * ```
+ *
+ * ```ts
+ *  enableAuthenticatedMenu() {
+ *    this.menuCtrl.enable(true, 'authenticated');
+ *    this.menuCtrl.enable(false, 'unauthenticated');
+ *  }
+ * ```
+ *
+ * Note: if an app only has one menu, there is no reason to pass an `id`.
+ *
+ *
+ * \@demo /docs/demos/src/menu/
+ *
+ * @see {\@link /docs/components#menus Menu Component Docs}
+ * @see {\@link ../Menu Menu API Docs}
+ *
+ */
+var MenuController = (function () {
+    function MenuController() {
+        this._menus = [];
+    }
+    /**
+     * Programatically open the Menu.
+     * @param {?=} menuId
+     * @return {?}
+     */
+    MenuController.prototype.open = function (menuId) {
+        var /** @type {?} */ menu = this.get(menuId);
+        if (menu && !this.isAnimating()) {
+            var /** @type {?} */ openedMenu = this.getOpen();
+            if (openedMenu && menu !== openedMenu) {
+                openedMenu.setOpen(false, false);
+            }
+            return menu.open();
+        }
+        return Promise.resolve(false);
+    };
+    /**
+     * Programatically close the Menu. If no `menuId` is given as the first
+     * argument then it'll close any menu which is open. If a `menuId`
+     * is given then it'll close that exact menu.
+     * @param {?=} menuId
+     * @return {?}
+     */
+    MenuController.prototype.close = function (menuId) {
+        var /** @type {?} */ menu;
+        if (menuId) {
+            // find the menu by its id
+            menu = this.get(menuId);
+        }
+        else {
+            // find the menu that is open
+            menu = this.getOpen();
+        }
+        if (menu) {
+            // close the menu
+            return menu.close();
+        }
+        return Promise.resolve(false);
+    };
+    /**
+     * Toggle the menu. If it's closed, it will open, and if opened, it
+     * will close.
+     * @param {?=} menuId
+     * @return {?}
+     */
+    MenuController.prototype.toggle = function (menuId) {
+        var /** @type {?} */ menu = this.get(menuId);
+        if (menu && !this.isAnimating()) {
+            var /** @type {?} */ openedMenu = this.getOpen();
+            if (openedMenu && menu !== openedMenu) {
+                openedMenu.setOpen(false, false);
+            }
+            return menu.toggle();
+        }
+        return Promise.resolve(false);
+    };
+    /**
+     * Used to enable or disable a menu. For example, there could be multiple
+     * left menus, but only one of them should be able to be opened at the same
+     * time. If there are multiple menus on the same side, then enabling one menu
+     * will also automatically disable all the others that are on the same side.
+     * @param {?} shouldEnable
+     * @param {?=} menuId
+     * @return {?}
+     */
+    MenuController.prototype.enable = function (shouldEnable, menuId) {
+        var /** @type {?} */ menu = this.get(menuId);
+        if (menu) {
+            return menu.enable(shouldEnable);
+        }
+    };
+    /**
+     * Used to enable or disable the ability to swipe open the menu.
+     * @param {?} shouldEnable
+     * @param {?=} menuId
+     * @return {?}
+     */
+    MenuController.prototype.swipeEnable = function (shouldEnable, menuId) {
+        var /** @type {?} */ menu = this.get(menuId);
+        if (menu) {
+            return menu.swipeEnable(shouldEnable);
+        }
+    };
+    /**
+     * If the menuId is not specified, it returns true if ANY menu is currenly open.
+     * @param {?=} menuId
+     * @return {?}
+     */
+    MenuController.prototype.isOpen = function (menuId) {
+        if (menuId) {
+            var /** @type {?} */ menu = this.get(menuId);
+            return menu && menu.isOpen || false;
+        }
+        else {
+            return !!this.getOpen();
+        }
+    };
+    /**
+     * @param {?=} menuId
+     * @return {?}
+     */
+    MenuController.prototype.isEnabled = function (menuId) {
+        var /** @type {?} */ menu = this.get(menuId);
+        return menu && menu.enabled || false;
+    };
+    /**
+     * Used to get a menu instance. If a `menuId` is not provided then it'll
+     * return the first menu found. If a `menuId` is `left` or `right`, then
+     * it'll return the enabled menu on that side. Otherwise, if a `menuId` is
+     * provided, then it'll try to find the menu using the menu's `id`
+     * property. If a menu is not found then it'll return `null`.
+     * @param {?=} menuId
+     * @return {?}
+     */
+    MenuController.prototype.get = function (menuId) {
+        var /** @type {?} */ menu;
+        if (menuId === 'left' || menuId === 'right') {
+            // there could be more than one menu on the same side
+            // so first try to get the enabled one
+            menu = this._menus.find(function (m) { return m.side === menuId && m.enabled; });
+            if (menu) {
+                return menu;
+            }
+            // didn't find a menu side that is enabled
+            // so try to get the first menu side found
+            return this._menus.find(function (m) { return m.side === menuId; }) || null;
+        }
+        else if (menuId) {
+            // the menuId was not left or right
+            // so try to get the menu by its "id"
+            return this._menus.find(function (m) { return m.id === menuId; }) || null;
+        }
+        // return the first enabled menu
+        menu = this._menus.find(function (m) { return m.enabled; });
+        if (menu) {
+            return menu;
+        }
+        // get the first menu in the array, if one exists
+        return (this._menus.length ? this._menus[0] : null);
+    };
+    /**
+     * @return {?}
+     */
+    MenuController.prototype.getOpen = function () {
+        return this._menus.find(function (m) { return m.isOpen; });
+    };
+    /**
+     * @return {?}
+     */
+    MenuController.prototype.getMenus = function () {
+        return this._menus;
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    MenuController.prototype.isAnimating = function () {
+        return this._menus.some(function (menu) { return menu.isAnimating(); });
+    };
+    /**
+     * @hidden
+     * @param {?} menu
+     * @return {?}
+     */
+    MenuController.prototype._register = function (menu) {
+        (void 0) /* assert */;
+        this._menus.push(menu);
+    };
+    /**
+     * @hidden
+     * @param {?} menu
+     * @return {?}
+     */
+    MenuController.prototype._unregister = function (menu) {
+        (void 0) /* assert */;
+        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__util_util__["l" /* removeArrayItem */])(this._menus, menu);
+    };
+    /**
+     * @hidden
+     * @param {?} menu
+     * @return {?}
+     */
+    MenuController.prototype._setActiveMenu = function (menu) {
+        (void 0) /* assert */;
+        (void 0) /* assert */;
+        // if this menu should be enabled
+        // then find all the other menus on this same side
+        // and automatically disable other same side menus
+        var /** @type {?} */ side = menu.side;
+        this._menus
+            .filter(function (m) { return m.side === side && m !== menu; })
+            .map(function (m) { return m.enable(false); });
+    };
+    /**
+     * @hidden
+     * @param {?} name
+     * @param {?} cls
+     * @return {?}
+     */
+    MenuController.registerType = function (name, cls) {
+        menuTypes[name] = cls;
+    };
+    /**
+     * @hidden
+     * @param {?} type
+     * @param {?} menuCmp
+     * @param {?} plt
+     * @return {?}
+     */
+    MenuController.create = function (type, menuCmp, plt) {
+        return new menuTypes[type](menuCmp, plt);
+    };
+    return MenuController;
+}());
+
+function MenuController_tsickle_Closure_declarations() {
+    /** @type {?} */
+    MenuController.prototype._menus;
+}
+var /** @type {?} */ menuTypes = {};
+//# sourceMappingURL=menu-controller.js.map
+
+/***/ }),
+/* 25 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__config_config__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dom_controller__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_dom__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__key__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__platform__ = __webpack_require__(3);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Keyboard; });
+
+
+
+
+
+
+/**
+ * \@name Keyboard
+ * \@description
+ * The `Keyboard` class allows you to work with the keyboard events provided
+ * by the Ionic keyboard plugin.
+ *
+ * \@usage
+ * ```ts
+ * export class MyClass {
+ *   constructor(public keyboard: Keyboard) {
+ *
+ *   }
+ * }
+ * ```
+ */
+var Keyboard = (function () {
+    /**
+     * @param {?} config
+     * @param {?} _plt
+     * @param {?} _zone
+     * @param {?} _dom
+     */
+    function Keyboard(config, _plt, _zone, _dom) {
+        var _this = this;
+        this._plt = _plt;
+        this._zone = _zone;
+        this._dom = _dom;
+        this.focusOutline(config.get('focusOutline'));
+        var win = _plt.win();
+        _plt.registerListener(win, 'native.keyboardhide', function () {
+            _plt.cancelTimeout(_this._tmr);
+            _this._tmr = _plt.timeout(function () {
+                // this custom cordova plugin event fires when the keyboard will hide
+                // useful when the virtual keyboard is closed natively
+                // https://github.com/driftyco/ionic-plugin-keyboard
+                if (_this.isOpen()) {
+                    _this._plt.focusOutActiveElement();
+                }
+            }, 80);
+        }, { zone: false, passive: true });
+        _plt.registerListener(win, 'native.keyboardshow', function () {
+            _plt.cancelTimeout(_this._tmr);
+        }, { zone: false, passive: true });
+    }
+    /**
+     * Check to see if the keyboard is open or not.
+     *
+     * ```ts
+     * export class MyClass {
+     *   constructor(public keyboard: Keyboard) {
+     *
+     *   }
+     *
+     *   keyboardCheck() {
+     *     console.log('The keyboard is open:', this.keyboard.isOpen());
+     *   }
+     * }
+     * ```
+     *
+     * @return {?}
+     */
+    Keyboard.prototype.isOpen = function () {
+        return this.hasFocusedTextInput();
+    };
+    /**
+     * When the keyboard is closed, call any methods you want.
+     *
+     * ```ts
+     * export class MyClass {
+     *   constructor(public keyboard: Keyboard) {
+     *     this.keyboard.onClose(this.closeCallback);
+     *   }
+     *   closeCallback() {
+     *     // call what ever functionality you want on keyboard close
+     *     console.log('Closing time');
+     *   }
+     * }
+     * ```
+     *
+     * @param {?} callback
+     * @param {?=} pollingInternval
+     * @param {?=} pollingChecksMax
+     * @return {?}
+     */
+    Keyboard.prototype.onClose = function (callback, pollingInternval, pollingChecksMax) {
+        if (pollingInternval === void 0) { pollingInternval = KEYBOARD_CLOSE_POLLING; }
+        if (pollingChecksMax === void 0) { pollingChecksMax = KEYBOARD_POLLING_CHECKS_MAX; }
+        (void 0) /* console.debug */;
+        var /** @type {?} */ self = this;
+        var /** @type {?} */ checks = 0;
+        var /** @type {?} */ promise = null;
+        if (!callback) {
+            // a callback wasn't provided, so let's return a promise instead
+            promise = new Promise(function (resolve) { callback = resolve; });
+        }
+        /**
+         * @return {?}
+         */
+        function checkKeyboard() {
+            (void 0) /* console.debug */;
+            if (!self.isOpen() || checks > pollingChecksMax) {
+                self._plt.timeout(function () {
+                    self._zone.run(function () {
+                        (void 0) /* console.debug */;
+                        callback();
+                    });
+                }, 400);
+            }
+            else {
+                self._plt.timeout(checkKeyboard, pollingInternval);
+            }
+            checks++;
+        }
+        self._plt.timeout(checkKeyboard, pollingInternval);
+        return promise;
+    };
+    /**
+     * Programmatically close the keyboard.
+     * @return {?}
+     */
+    Keyboard.prototype.close = function () {
+        var _this = this;
+        this._dom.read(function () {
+            if (_this.isOpen()) {
+                // only focus out when a text input has focus
+                (void 0) /* console.debug */;
+                _this._dom.write(function () {
+                    _this._plt.focusOutActiveElement();
+                });
+            }
+        });
+    };
+    /**
+     * @hidden
+     * @param {?} setting
+     * @return {?}
+     */
+    Keyboard.prototype.focusOutline = function (setting) {
+        /* Focus Outline
+         * --------------------------------------------------
+         * By default, when a keydown event happens from a tab key, then
+         * the 'focus-outline' css class is added to the body element
+         * so focusable elements have an outline. On a mousedown or
+         * touchstart event, then the 'focus-outline' css class is removed.
+         *
+         * Config default overrides:
+         * focusOutline: true     - Always add the focus-outline
+         * focusOutline: false    - Do not add the focus-outline
+         */
+        var /** @type {?} */ self = this;
+        var /** @type {?} */ platform = self._plt;
+        var /** @type {?} */ doc = platform.doc();
+        var /** @type {?} */ isKeyInputEnabled = false;
+        var /** @type {?} */ unRegMouse;
+        var /** @type {?} */ unRegTouch;
+        var /** @type {?} */ evOpts = { passive: true, zone: false };
+        /**
+         * @return {?}
+         */
+        function cssClass() {
+            self._dom.write(function () {
+                ((platform.doc().body.classList))[isKeyInputEnabled ? 'add' : 'remove']('focus-outline');
+            });
+        }
+        if (setting === true) {
+            isKeyInputEnabled = true;
+            return cssClass();
+        }
+        else if (setting === false) {
+            return;
+        }
+        /**
+         * @param {?} ev
+         * @return {?}
+         */
+        function keyDown(ev) {
+            if (!isKeyInputEnabled && ev.keyCode === __WEBPACK_IMPORTED_MODULE_4__key__["h" /* KEY_TAB */]) {
+                isKeyInputEnabled = true;
+                enableKeyInput();
+            }
+        }
+        /**
+         * @return {?}
+         */
+        function pointerDown() {
+            isKeyInputEnabled = false;
+            enableKeyInput();
+        }
+        /**
+         * @return {?}
+         */
+        function enableKeyInput() {
+            cssClass();
+            unRegMouse && unRegMouse();
+            unRegTouch && unRegTouch();
+            if (isKeyInputEnabled) {
+                // listen for when a mousedown or touchstart event happens
+                unRegMouse = platform.registerListener(doc, 'mousedown', pointerDown, evOpts);
+                unRegTouch = platform.registerListener(doc, 'touchstart', pointerDown, evOpts);
+            }
+        }
+        // always listen for tab keydown events
+        platform.registerListener(platform.doc(), 'keydown', keyDown, evOpts);
+    };
+    /**
+     * @return {?}
+     */
+    Keyboard.prototype.hasFocusedTextInput = function () {
+        var /** @type {?} */ activeEle = this._plt.getActiveElement();
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__util_dom__["e" /* isTextInput */])(activeEle)) {
+            return (activeEle.parentElement.querySelector(':focus') === activeEle);
+        }
+        return false;
+    };
+    return Keyboard;
+}());
+
+Keyboard.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["l" /* Injectable */] },
+];
+/**
+ * @nocollapse
+ */
+Keyboard.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_1__config_config__["b" /* Config */], },
+    { type: __WEBPACK_IMPORTED_MODULE_5__platform__["a" /* Platform */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["c" /* NgZone */], },
+    { type: __WEBPACK_IMPORTED_MODULE_2__dom_controller__["a" /* DomController */], },
+]; };
+function Keyboard_tsickle_Closure_declarations() {
+    /** @type {?} */
+    Keyboard.decorators;
+    /**
+     * @nocollapse
+     * @type {?}
+     */
+    Keyboard.ctorParameters;
+    /** @type {?} */
+    Keyboard.prototype._tmr;
+    /** @type {?} */
+    Keyboard.prototype._plt;
+    /** @type {?} */
+    Keyboard.prototype._zone;
+    /** @type {?} */
+    Keyboard.prototype._dom;
+}
+var /** @type {?} */ KEYBOARD_CLOSE_POLLING = 150;
+var /** @type {?} */ KEYBOARD_POLLING_CHECKS_MAX = 100;
+//# sourceMappingURL=keyboard.js.map
+
+/***/ }),
+/* 26 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animations_animation__ = __webpack_require__(10);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Transition; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+/**
+ * @hidden
+ *
+ * - play
+ * - Add before classes - DOM WRITE
+ * - Remove before classes - DOM WRITE
+ * - Add before inline styles - DOM WRITE
+ * - set inline FROM styles - DOM WRITE
+ * - RAF
+ * - read toolbar dimensions - DOM READ
+ * - write content top/bottom padding - DOM WRITE
+ * - set css transition duration/easing - DOM WRITE
+ * - RAF
+ * - set inline TO styles - DOM WRITE
+ */
+var Transition = (function (_super) {
+    __extends(Transition, _super);
+    /**
+     * @param {?} plt
+     * @param {?} enteringView
+     * @param {?} leavingView
+     * @param {?} opts
+     */
+    function Transition(plt, enteringView, leavingView, opts) {
+        var _this = _super.call(this, plt, null, opts) || this;
+        _this.enteringView = enteringView;
+        _this.leavingView = leavingView;
+        return _this;
+    }
+    /**
+     * @return {?}
+     */
+    Transition.prototype.init = function () { };
+    /**
+     * @param {?} trnsStart
+     * @return {?}
+     */
+    Transition.prototype.registerStart = function (trnsStart) {
+        this._trnsStart = trnsStart;
+    };
+    /**
+     * @return {?}
+     */
+    Transition.prototype.start = function () {
+        this._trnsStart && this._trnsStart();
+        this._trnsStart = null;
+        // bubble up start
+        this.parent && this.parent.start();
+    };
+    /**
+     * @return {?}
+     */
+    Transition.prototype.destroy = function () {
+        _super.prototype.destroy.call(this);
+        this.parent = this.enteringView = this.leavingView = this._trnsStart = null;
+    };
+    return Transition;
+}(__WEBPACK_IMPORTED_MODULE_0__animations_animation__["a" /* Animation */]));
+
+function Transition_tsickle_Closure_declarations() {
+    /** @type {?} */
+    Transition.prototype._trnsStart;
+    /** @type {?} */
+    Transition.prototype.parent;
+    /** @type {?} */
+    Transition.prototype.trnsId;
+    /** @type {?} */
+    Transition.prototype.enteringView;
+    /** @type {?} */
+    Transition.prototype.leavingView;
+}
+//# sourceMappingURL=transition.js.map
+
+/***/ }),
+/* 27 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_ion__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__debouncer__ = __webpack_require__(179);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BaseInput; });
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+
+var BaseInput = (function (_super) {
+    __extends(BaseInput, _super);
+    /**
+     * @param {?} config
+     * @param {?} elementRef
+     * @param {?} renderer
+     * @param {?} name
+     * @param {?} _defaultValue
+     * @param {?} _form
+     * @param {?} _item
+     * @param {?} ngControl
+     */
+    function BaseInput(config, elementRef, renderer, name, _defaultValue, _form, _item, ngControl) {
+        var _this = _super.call(this, config, elementRef, renderer, name) || this;
+        _this._defaultValue = _defaultValue;
+        _this._form = _form;
+        _this._item = _item;
+        _this._isFocus = false;
+        _this._disabled = false;
+        _this._debouncer = new __WEBPACK_IMPORTED_MODULE_3__debouncer__["a" /* TimeoutDebouncer */](0);
+        _this._init = false;
+        _this._initModel = false;
+        /**
+         * \@output {Range} Emitted when the range selector drag starts.
+         */
+        _this.ionFocus = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* EventEmitter */]();
+        /**
+         * \@output {Range} Emitted when the range value changes.
+         */
+        _this.ionChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* EventEmitter */]();
+        /**
+         * \@output {Range} Emitted when the range selector drag ends.
+         */
+        _this.ionBlur = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* EventEmitter */]();
+        _form && _form.register(_this);
+        _this._value = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["f" /* deepCopy */])(_this._defaultValue);
+        if (_item) {
+            _this.id = name + '-' + _item.registerInput(name);
+            _this._labelId = 'lbl-' + _item.id;
+            _this._item.setElementClass('item-' + name, true);
+        }
+        // If the user passed a ngControl we need to set the valueAccessor
+        if (ngControl) {
+            ngControl.valueAccessor = _this;
+        }
+        return _this;
+    }
+    Object.defineProperty(BaseInput.prototype, "disabled", {
+        /**
+         * \@input {boolean} If true, the user cannot interact with this element.
+         * @return {?}
+         */
+        get: function () {
+            return this._disabled;
+        },
+        /**
+         * @param {?} val
+         * @return {?}
+         */
+        set: function (val) {
+            this.setDisabledState(val);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(BaseInput.prototype, "value", {
+        /**
+         * @return {?}
+         */
+        get: function () {
+            return this._value;
+        },
+        /**
+         * @param {?} val
+         * @return {?}
+         */
+        set: function (val) {
+            if (this._writeValue(val)) {
+                this.onChange();
+                this._fireIonChange();
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**
+     * @param {?} val
+     * @return {?}
+     */
+    BaseInput.prototype.setValue = function (val) {
+        this.value = val;
+    };
+    /**
+     * @hidden
+     * @param {?} isDisabled
+     * @return {?}
+     */
+    BaseInput.prototype.setDisabledState = function (isDisabled) {
+        this._disabled = isDisabled = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["e" /* isTrueProperty */])(isDisabled);
+        this._item && this._item.setElementClass("item-" + this._componentName + "-disabled", isDisabled);
+    };
+    /**
+     * @hidden
+     * @param {?} val
+     * @return {?}
+     */
+    BaseInput.prototype.writeValue = function (val) {
+        if (this._writeValue(val)) {
+            if (this._initModel) {
+                this._fireIonChange();
+            }
+            else if (this._init) {
+                // ngModel fires the first time too late, we need to skip the first ngModel update
+                this._initModel = true;
+            }
+        }
+    };
+    /**
+     * @hidden
+     * @param {?} val
+     * @return {?}
+     */
+    BaseInput.prototype._writeValue = function (val) {
+        (void 0) /* assert */;
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["g" /* isUndefined */])(val)) {
+            return false;
+        }
+        var /** @type {?} */ normalized;
+        if (val === null) {
+            normalized = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["f" /* deepCopy */])(this._defaultValue);
+        }
+        else {
+            normalized = this._inputNormalize(val);
+        }
+        var /** @type {?} */ notUpdate = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["g" /* isUndefined */])(normalized) || !this._inputShouldChange(normalized);
+        if (notUpdate) {
+            return false;
+        }
+        (void 0) /* console.debug */;
+        this._value = normalized;
+        this._inputCheckHasValue(normalized);
+        if (this._init) {
+            this._inputUpdated();
+        }
+        return true;
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype._fireIonChange = function () {
+        var _this = this;
+        if (this._init) {
+            this._debouncer.debounce(function () {
+                (void 0) /* assert */;
+                _this.ionChange.emit(_this._inputChangeEvent());
+                _this._initModel = true;
+            });
+        }
+    };
+    /**
+     * @hidden
+     * @param {?} fn
+     * @return {?}
+     */
+    BaseInput.prototype.registerOnChange = function (fn) {
+        this._onChanged = fn;
+    };
+    /**
+     * @hidden
+     * @param {?} fn
+     * @return {?}
+     */
+    BaseInput.prototype.registerOnTouched = function (fn) {
+        this._onTouched = fn;
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype._initialize = function () {
+        if (this._init) {
+            (void 0) /* assert */;
+            return;
+        }
+        this._init = true;
+        if (__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["c" /* isPresent */])(this._value)) {
+            this._inputUpdated();
+        }
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype._fireFocus = function () {
+        if (this._isFocus) {
+            return;
+        }
+        (void 0) /* assert */;
+        (void 0) /* assert */;
+        this._isFocus = true;
+        this.ionFocus.emit(this);
+        this._inputUpdated();
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype._fireBlur = function () {
+        if (!this._isFocus) {
+            return;
+        }
+        (void 0) /* assert */;
+        (void 0) /* assert */;
+        this._isFocus = false;
+        this.ionBlur.emit(this);
+        this._inputUpdated();
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype.onChange = function () {
+        this._onChanged && this._onChanged(this._inputNgModelEvent());
+        this._onTouched && this._onTouched();
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype.isFocus = function () {
+        return this._isFocus;
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype.hasValue = function () {
+        var /** @type {?} */ val = this._value;
+        return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["d" /* isArray */])(val)
+            ? val.length > 0
+            : __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__util__["c" /* isPresent */])(val);
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype.ngOnDestroy = function () {
+        this._form && this._form.deregister(this);
+        this._init = false;
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype.ngAfterContentInit = function () {
+        this._initialize();
+    };
+    /**
+     * @hidden
+     * @param {?} val
+     * @return {?}
+     */
+    BaseInput.prototype._inputCheckHasValue = function (val) {
+        if (!this._item) {
+            return;
+        }
+        this._item.setElementClass('input-has-value', this.hasValue());
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype.initFocus = function () { };
+    /**
+     * @hidden
+     * @param {?} val
+     * @return {?}
+     */
+    BaseInput.prototype._inputNormalize = function (val) {
+        return val;
+    };
+    /**
+     * @hidden
+     * @param {?} val
+     * @return {?}
+     */
+    BaseInput.prototype._inputShouldChange = function (val) {
+        return this._value !== val;
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype._inputChangeEvent = function () {
+        return this;
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype._inputNgModelEvent = function () {
+        return this._value;
+    };
+    /**
+     * @hidden
+     * @return {?}
+     */
+    BaseInput.prototype._inputUpdated = function () {
+        (void 0) /* assert */;
+    };
+    return BaseInput;
+}(__WEBPACK_IMPORTED_MODULE_2__components_ion__["a" /* Ion */]));
+
+BaseInput.propDecorators = {
+    'ionFocus': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Output */] },],
+    'ionChange': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Output */] },],
+    'ionBlur': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["M" /* Output */] },],
+    'disabled': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* Input */] },],
+};
+function BaseInput_tsickle_Closure_declarations() {
+    /** @type {?} */
+    BaseInput.propDecorators;
+    /** @type {?} */
+    BaseInput.prototype._value;
+    /** @type {?} */
+    BaseInput.prototype._onChanged;
+    /** @type {?} */
+    BaseInput.prototype._onTouched;
+    /** @type {?} */
+    BaseInput.prototype._isFocus;
+    /** @type {?} */
+    BaseInput.prototype._labelId;
+    /** @type {?} */
+    BaseInput.prototype._disabled;
+    /** @type {?} */
+    BaseInput.prototype._debouncer;
+    /** @type {?} */
+    BaseInput.prototype._init;
+    /** @type {?} */
+    BaseInput.prototype._initModel;
+    /** @type {?} */
+    BaseInput.prototype.id;
+    /**
+     * \@output {Range} Emitted when the range selector drag starts.
+     * @type {?}
+     */
+    BaseInput.prototype.ionFocus;
+    /**
+     * \@output {Range} Emitted when the range value changes.
+     * @type {?}
+     */
+    BaseInput.prototype.ionChange;
+    /**
+     * \@output {Range} Emitted when the range selector drag ends.
+     * @type {?}
+     */
+    BaseInput.prototype.ionBlur;
+    /** @type {?} */
+    BaseInput.prototype._defaultValue;
+    /** @type {?} */
+    BaseInput.prototype._form;
+    /** @type {?} */
+    BaseInput.prototype._item;
+}
+//# sourceMappingURL=base-input.js.map
+
+/***/ }),
 /* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animations_animation__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transition__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transition__ = __webpack_require__(26);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PageTransition; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -48446,7 +48446,7 @@ function NavPush_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__navigation_deep_linker__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_dom_controller__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gestures_gesture_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_keyboard__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_keyboard__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__navigation_nav_controller__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__navigation_nav_controller_base__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__platform_platform__ = __webpack_require__(3);
@@ -54886,7 +54886,7 @@ function SlideEdgeGesture_tsickle_Closure_declarations() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_app_app_root__ = __webpack_require__(51);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_0__components_app_app_root__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_menu_controller__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_menu_controller__ = __webpack_require__(24);
 /* unused harmony reexport MenuController */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_action_sheet_action_sheet__ = __webpack_require__(48);
 /* unused harmony reexport ActionSheet */
@@ -55160,7 +55160,7 @@ function SlideEdgeGesture_tsickle_Closure_declarations() {
 /* unused harmony reexport setupProvideEvents */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_128__util_ionic_error_handler__ = __webpack_require__(233);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_128__util_ionic_error_handler__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_129__platform_keyboard__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_129__platform_keyboard__ = __webpack_require__(25);
 /* unused harmony reexport Keyboard */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_130__util_form__ = __webpack_require__(17);
 /* unused harmony reexport Form */
@@ -55173,7 +55173,7 @@ function SlideEdgeGesture_tsickle_Closure_declarations() {
 /* unused harmony reexport Animation */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_133__transitions_page_transition__ = __webpack_require__(28);
 /* unused harmony reexport PageTransition */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_134__transitions_transition__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_134__transitions_transition__ = __webpack_require__(26);
 /* unused harmony reexport Transition */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_135__platform_platform_registry__ = __webpack_require__(174);
 /* unused harmony reexport PlatformConfigToken */
@@ -55723,6 +55723,7 @@ webpackEmptyContext.id = 98;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(23);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -55735,17 +55736,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var HomePage = (function () {
-    function HomePage(navCtrl) {
+    function HomePage(navCtrl, sanitizer) {
         this.navCtrl = navCtrl;
+        this.sanitizer = sanitizer;
+        this.toppings = 0;
+        this.timeandplace = false;
+        this.timeandplaces = [false, false, false, true, true, true, true];
+        this.messages = ["<p>本日は短い時間でしたがお話を聞くことが出来て光栄でした。</br>また、お目にかかれることを楽しみにいたしております。</br>今後とも、どうぞよろしくお願いいたします。</p>", "早速、ご対応いただき誠にありがとうございます。</br>今後も相変わらぬご交諠を賜りますよう、よろしくお願い申し上げます。</br>メールにて恐縮ではございますが、取り急ぎ、お礼申し上げます。", "お誘い頂き、誠にありがとうございます。</br>是非、参加したいところなのですが、既に別の予定が入っておりまして、残念ながら欠席せざる得ない状況です。</br>せっかくご招待をいただきながら、本当に申し訳なく存じますが、何卒、ご容赦くださいますようお願いいたします。", "お話を聞いて頂ける機会を頂けたこと、誠に感謝致します。</br>打ち合わせの時間について先方に打診しましたところ以下の日時が都合がよいとのことですがいかがいたしましょうか。</br>この日程にて差し支えなければ先方にその旨連絡いたしますのでご検討をお願いいたします。</br>取り急ぎ、メールにてご連絡いたします。"];
+        this.safeMsg = this.sanitizer.bypassSecurityTrustHtml(this.messages[0]);
     }
+    HomePage.prototype.selectMessage = function (tmp) {
+        this.safeMsg = this.sanitizer.bypassSecurityTrustHtml(this.messages[tmp]);
+        this.timeandplace = this.timeandplaces[tmp];
+        return this.safeMsg;
+    };
     return HomePage;
 }());
 HomePage = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/pages/home/home.html"*/'\n<ion-content>\n\n　<div id="vries"></div>\n　<!-- ヘッダーを押すと、モーダルでAngular Mailの説明を表示させたい。 -->\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Angular Mail</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n<div id="content" padding>\n\n\n  <h2>①メールでの基本情報を入力してください。</h2>\n  <ion-item><label>1, </label><input type="text" placeholder="相手の名前" [(ngModel)]="yourname"></ion-item>\n  <ion-item><label>2, </label><input type="text" placeholder="自分の名前" [(ngModel)]="myname"></ion-item>\n\n\n\n　<p></p>\n  <h2>②お使いになるテンプレートを選択してください。</h2>\n\n  <ion-list>\n    <ion-item>\n      <ion-label><button class="template-button" ion-button full><ion-select [(ngModel)]="toppings" multiple="false" cancelText="キャンセル" okText="進む">\n        <ion-option value="select" selected="true">選択</ion-option>\n        <ion-option value="bacon">最初のご挨拶</ion-option>\n        <ion-option value="olives">返信</ion-option>\n        <ion-option value="xcheese"></ion-option>\n        <ion-option value="peppers">Green Peppers</ion-option>\n        <ion-option value="mushrooms">Mushrooms</ion-option>\n        <ion-option value="onions">Onions</ion-option>\n        <ion-option value="pepperoni">Pepperoni</ion-option>\n        <ion-option value="pineapple">Pineapple</ion-option>\n        <ion-option value="sausage">Sausage</ion-option>\n        <ion-option value="Spinach">Spinach</ion-option>\n      </ion-select></button></ion-label>\n\n    </ion-item>\n  </ion-list>\n\n      <div class="template">\n        株式会社{{partnercompany}} {{partnerposition}}\n\n        <p>{{yourname}}　様</p>\n\n        株式会社{{mycompany}} {{myposition}}の{{myname}}です。\n        昨日は貴重な{{business}}のお話、ありがとうございました。\n        {{yourname}}さまと{{comeacross}}にてご縁をいただきまして、大変光栄です。\n\n        是非{{nextplace}}などで、またお話をお聞かせ頂きたいと存じます。\n        その時は{{nextbusiness}}のお話などできたら幸甚です。\n\n        まだ、学部生という身分で、至らない点も多々あるかと存じますが、\n        今後ともどうぞよろしくお願い致します。\n\n        <p>{{myname}}</p>\n\n      </div>\n\n\n  <h2>③少し不自然な文章になっているかもしれません。弊社のアプリを使っている旨を伝えますか？</h2>\n  　<ion-item>\n  　  <ion-label id="attention">※弊社は、AI活用の可能性を探るために、メールでの文章の一部を、AIに代筆してもらっております。\n  　  至らない点もあるとは存じますが、お許しください。</ion-label>\n  　  <ion-checkbox [(ngModel)]="pepperoni"></ion-checkbox>\n  　</ion-item>\n\n\n</div>\n\n  <!-- <ion-toolbar class="footer"> -->\n    <button id="footer-button"ion-button full>コピー</button>\n  <!-- </ion-toolbar> -->\n\n</ion-content>\n'/*ion-inline-end:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/pages/home/home.html"*/'<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>\n  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>\n  <script>\n          $(function () {\n            var clipboard = new Clipboard(\'.btn\');\n          });\n      </script>\n\n<ion-content>\n\n　<div id="vries"></div>\n　<!-- ヘッダーを押すと、モーダルでAngular Mailの説明を表示させたい。 -->\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Angular Mail</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n<div id="content" padding>\n\n\n  <h2>①メールでの基本情報を入力してください。</h2>\n  <ion-item><label>1, </label><input type="text" placeholder="相手の名前" [(ngModel)]="yourname"></ion-item>\n  <ion-item><label>2, </label><input type="text" placeholder="自分の名前" [(ngModel)]="myname"></ion-item>\n<ion-item *ngIf="timeandplace"><label>3, </label><input type="text" placeholder="日時" [(ngModel)]="settime"></ion-item>\n<ion-item *ngIf="timeandplace"><label>4, </label><input type="text" placeholder="場所" [(ngModel)]="setplace"></ion-item>\n\n\n　<p></p>\n  <h2>②お使いになるテンプレートを選択してください。</h2>\n\n  <ion-list>\n    <ion-item>\n<<<<<<< HEAD\n      <ion-label><button class="template-button" ion-button full><ion-select [(ngModel)]="toppings" multiple="false" cancelText="キャンセル" okText="進む">\n        <ion-option value="select" selected="true">選択</ion-option>\n        <ion-option value="bacon">最初のご挨拶</ion-option>\n        <ion-option value="olives">返信</ion-option>\n        <ion-option value="xcheese"></ion-option>\n        <ion-option value="peppers">Green Peppers</ion-option>\n        <ion-option value="mushrooms">Mushrooms</ion-option>\n        <ion-option value="onions">Onions</ion-option>\n        <ion-option value="pepperoni">Pepperoni</ion-option>\n        <ion-option value="pineapple">Pineapple</ion-option>\n        <ion-option value="sausage">Sausage</ion-option>\n        <ion-option value="Spinach">Spinach</ion-option>\n=======\n      <ion-label><button class="template-button" ion-button full outline><ion-select [(ngModel)]="toppings" multiple="false" cancelText="キャンセル" okText="進む" (ionChange)="selectMessage($event)">\n        <ion-option value="0" selected="true">選択</ion-option>\n        <ion-option value="1">最初のご挨拶</ion-option>\n        <ion-option value="2">返信</ion-option>\n        <ion-option value="3">打ち合わせ日時伝達</ion-option>\n        <ion-option value="4">打ち合わせ変更</ion-option>\n        <ion-option value="5">Mushrooms</ion-option>\n        <ion-option value="6">Onions</ion-option>\n        <ion-option value="7">Pepperoni</ion-option>\n        <ion-option value="8">Pineapple</ion-option>\n        <ion-option value="9">Sausage</ion-option>\n        <ion-option value="10">Spinach</ion-option>\n>>>>>>> 80d50759740f26731b95f2cef316cd32d621cb87\n      </ion-select></button></ion-label>\n\n    </ion-item>\n  </ion-list>\n  <div class="template">\n    <p>{{yourname}}様、お世話になっております。</p>\n    <p>{{myname}}です。</p>\n  <div [innerHTML]="safeMsg"></div>\n  <div *ngIf="timeandplace"><p>----------------------</p><p>{{settime}}の{{setplace}}にて</p><p>----------------------</p></div>\n  <h4 *ngIf="use_ai">  ※弊社は、AI活用の可能性を探るために、メールでの文章の一部を、AIに代筆してもらっております。\n    　  至らない点もあるとは存じますが、お許しください。</h4>\n  </div>\n  <div>\n <input id="foo" value="ojhulfkjhxt" size="60">\n\n  　<ion-item>\n  　  <ion-label >少し不自然な文章になっているかもしれません。弊社のアプリを使っている旨を伝えますか？</ion-label>\n  　  <ion-checkbox [(ngModel)]="use_ai"></ion-checkbox>\n  　</ion-item>\n\n<<<<<<< HEAD\n=======\n</div>\n</div>\n</ion-content>\n>>>>>>> 80d50759740f26731b95f2cef316cd32d621cb87\n\n</div>\n\n<<<<<<< HEAD\n  <!-- <ion-toolbar class="footer"> -->\n    <button id="footer-button"ion-button full>コピー</button>\n  <!-- </ion-toolbar> -->\n=======\n<ion-footer>\n  <ion-title>\n    <button class ="btn"id="footer-button" ion-button round data-clipboard-target="#foo">コピー</button></ion-title>\n>>>>>>> 80d50759740f26731b95f2cef316cd32d621cb87\n\n</ion-content>\n'/*ion-inline-end:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__["g" /* DomSanitizer */]])
 ], HomePage);
 
 //# sourceMappingURL=home.js.map
@@ -56878,7 +56891,7 @@ function AlertController_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__navigation_deep_linker__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_dom_controller__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gestures_gesture_controller__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_keyboard__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_keyboard__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__navigation_nav_controller_base__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_platform__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__transitions_transition_controller__ = __webpack_require__(45);
@@ -57364,7 +57377,7 @@ function Card_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_config__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_util__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_form__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_base_input__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_base_input__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__item_item__ = __webpack_require__(16);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Checkbox; });
 var __extends = (this && this.__extends) || (function () {
@@ -57722,7 +57735,7 @@ function Chip_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_config__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__picker_picker_controller__ = __webpack_require__(71);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_form__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_base_input__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_base_input__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__item_item__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_util__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__util_datetime_util__ = __webpack_require__(232);
@@ -62439,7 +62452,7 @@ function Loading_tsickle_Closure_declarations() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_menu_controller__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_menu_controller__ = __webpack_require__(24);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuClose; });
 
 
@@ -62527,7 +62540,7 @@ function MenuClose_tsickle_Closure_declarations() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__button_button__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_menu_controller__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__app_menu_controller__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toolbar_navbar__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__navigation_view_controller__ = __webpack_require__(5);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuToggle; });
@@ -62746,9 +62759,9 @@ function MenuToggle_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__platform_dom_controller__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gestures_gesture_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_util__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_keyboard__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__platform_keyboard__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__menu_gestures__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_menu_controller__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_menu_controller__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__nav_nav__ = __webpack_require__(67);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__platform_platform__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__gestures_ui_event_manager__ = __webpack_require__(20);
@@ -64863,7 +64876,7 @@ function RangeKnob_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_dom_controller__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_form__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__tap_click_haptic__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_base_input__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_base_input__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__item_item__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__platform_platform__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__util_dom__ = __webpack_require__(9);
@@ -65881,7 +65894,7 @@ function Scroll_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_config__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_base_input__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_base_input__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__util_util__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__util_debouncer__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__platform_platform__ = __webpack_require__(3);
@@ -66391,7 +66404,7 @@ function Searchbar_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_config__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_base_input__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__util_base_input__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__segment_button__ = __webpack_require__(76);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Segment; });
 var __extends = (this && this.__extends) || (function () {
@@ -66559,7 +66572,7 @@ function Segment_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__config_config__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__navigation_deep_linker__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__util_form__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__util_base_input__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__util_base_input__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__util_util__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__item_item__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__option_option__ = __webpack_require__(68);
@@ -68510,7 +68523,7 @@ function TabButton_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__platform_dom_controller__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gestures_gesture_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__util_util__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_keyboard__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__platform_keyboard__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__navigation_nav_controller_base__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__platform_platform__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__tabs__ = __webpack_require__(85);
@@ -69341,7 +69354,7 @@ var /** @type {?} */ TOAST_POSITION_BOTTOM = 'bottom';
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gestures_gesture_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__tap_click_haptic__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__util_util__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__util_base_input__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__util_base_input__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__item_item__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__platform_key__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__platform_platform__ = __webpack_require__(3);
@@ -71281,7 +71294,7 @@ function registerModeConfigs(config) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__ = __webpack_require__(23);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IonicGestureConfig; });
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -74288,7 +74301,7 @@ webpackEmptyContext.id = 192;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(91);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(102);
@@ -74347,7 +74360,7 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_compiler__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__ = __webpack_require__(23);
 /* unused harmony export RESOURCE_CACHE_PROVIDER */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return platformBrowserDynamic; });
 /* unused harmony export VERSION */
@@ -74428,7 +74441,7 @@ ResourceLoaderImpl.ctorParameters = function () { return []; };
  * found in the LICENSE file at https://angular.io/license
  */
 var INTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS = [
-    __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["g" /* ɵINTERNAL_BROWSER_PLATFORM_PROVIDERS */],
+    __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser__["h" /* ɵINTERNAL_BROWSER_PLATFORM_PROVIDERS */],
     {
         provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["_14" /* COMPILER_OPTIONS */],
         useValue: { providers: [{ provide: __WEBPACK_IMPORTED_MODULE_0__angular_compiler__["a" /* ResourceLoader */], useClass: ResourceLoaderImpl }] },
@@ -74563,7 +74576,7 @@ var MyApp = (function () {
     return MyApp;
 }());
 MyApp = __decorate([
-    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/app/app.html"*/
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_5" /* Component */])({template:/*ion-inline-start:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/app/app.html"*/'<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>\n  <script src="https://cdn.jsdelivr.net/clipboard.js/1.5.3/clipboard.min.js"></script>\n  <script>\n          $(function () {\n            var clipboard = new Clipboard(\'.btn\');\n          });\n      </script>\n<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/kaishinnosuke/Documents/GitHub/angularMail/src/app/app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
@@ -101538,7 +101551,7 @@ var IonicNativePlugin = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animations_animation__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_transition__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_transition__ = __webpack_require__(26);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ActionSheetSlideIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ActionSheetSlideOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ActionSheetMdSlideIn; });
@@ -101679,7 +101692,7 @@ var ActionSheetWpSlideOut = (function (_super) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animations_animation__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_transition__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_transition__ = __webpack_require__(26);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AlertPopIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AlertPopOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AlertMdPopIn; });
@@ -102356,7 +102369,7 @@ function clickedOptionButton(ev) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animations_animation__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_transition__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_transition__ = __webpack_require__(26);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoadingPopIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return LoadingPopOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return LoadingMdPopIn; });
@@ -102671,7 +102684,7 @@ function MenuContentGesture_tsickle_Closure_declarations() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animations_animation__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_menu_controller__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_menu_controller__ = __webpack_require__(24);
 /* unused harmony export MenuType */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
@@ -103135,7 +103148,7 @@ var /** @type {?} */ MAX_PICKER_SPEED = 60;
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animations_animation__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_transition__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_transition__ = __webpack_require__(26);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PickerSlideIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return PickerSlideOut; });
 var __extends = (this && this.__extends) || (function () {
@@ -104759,7 +104772,7 @@ function enableKeyboardControl(s, plt, shouldEnable) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__animations_animation__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_transition__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__transitions_transition__ = __webpack_require__(26);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ToastSlideIn; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ToastSlideOut; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return ToastMdSlideIn; });
@@ -108124,7 +108137,7 @@ function PanRecognizer_tsickle_Closure_declarations() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_platform_browser__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_app_app__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_app_app_root__ = __webpack_require__(51);
@@ -108136,7 +108149,7 @@ function PanRecognizer_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__gestures_gesture_controller__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__gestures_gesture_config__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__tap_click_haptic__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_keyboard__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__platform_keyboard__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__util_module_loader__ = __webpack_require__(92);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__util_ng_module_loader__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__platform_platform__ = __webpack_require__(3);
@@ -108191,7 +108204,7 @@ function PanRecognizer_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_66__components_loading_loading_controller__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_67__components_menu_menu__ = __webpack_require__(133);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_68__components_menu_menu_close__ = __webpack_require__(131);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__components_app_menu_controller__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_69__components_app_menu_controller__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_70__components_menu_menu_toggle__ = __webpack_require__(132);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_71__components_modal_modal_component__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_72__components_modal_modal_controller__ = __webpack_require__(134);
